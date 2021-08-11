@@ -16,9 +16,36 @@
     <Border Background="#23272a" CornerRadius="10">
         <Grid>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" x:Name="DragMoveStackPanel" MouseDown="DragMoveStackPanel_MouseDown">
+                <TextBlock Text="nanoSDK Login" FontSize="20" Foreground="White"/>
+                <RadioButton x:Name="CloseBtn" Click="CloseBtn_Click" Content="X" Style="{StaticResource CustomButton}" Margin="240,0,0,0" FontSize="30" Foreground="White"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2">
+                <TextBlock Foreground="White" Text="Username" TextWrapping="Wrap" Margin="0,0,0,5"/>
+                <TextBox x:Name="userInput" Style="{StaticResource CustomTextBox}" ToolTip="Username" Height="30" Foreground="White"/>
+                <TextBlock Foreground="White" Text="Password" TextWrapping="Wrap" Margin="0,0,0,5"/>
+                <TextBox x:Name="PassInput" Style="{StaticResource CustomTextBox}" ToolTip="Password" Height="30" Foreground="White"/>
+                <Label Content="Options:" FontSize="10" Foreground="DarkGray"/>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <RadioButton Click="LoginBtn_Click" Content="Login" Margin="0,0,10,0" x:Name="LoginBtn" Style="{StaticResource CustomButton}" Foreground="White"/>
+                    <RadioButton Content="Register" Margin="0,0,10,0" x:Name="RegisterBtn" Style="{StaticResource CustomButton}" Foreground="White"/>
+                    <RadioButton Content="Discord" x:Name="DiscordBtn" Margin="0,0,10,0" Style="{StaticResource CustomButton}" Foreground="White"/>
+                    <RadioButton Content="About" x:Name="AboutBtn" Margin="0,0,10,0" Style="{StaticResource CustomButton}" Foreground="White"/>
+                    <RadioButton Content="Dont Trust us?" x:Name="InformationBtn" Margin="0,0,10,0" Style="{StaticResource CustomButton}" Foreground="White"/>
+                </StackPanel>
+
+            </StackPanel>
         </Grid>
     </Border>
 </Window>

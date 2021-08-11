@@ -15,7 +15,22 @@
         FontFamily="/Fonts/Roboto">
     <Border Background="#23272a" CornerRadius="10">
         <Grid>
-
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" x:Name="DragMoveStackPanel" MouseDown="DragMoveStackPanel_MouseDown">
+                <TextBlock Text="nanoSDK Register" FontSize="20" Foreground="White"/>
+                <RadioButton x:Name="CloseBtn" Click="CloseBtn_Click" Content="X" Style="{StaticResource CustomButton}" Margin="240,0,0,0" FontSize="30" Foreground="White"/>
+            </StackPanel>
         </Grid>
     </Border>
 </Window>

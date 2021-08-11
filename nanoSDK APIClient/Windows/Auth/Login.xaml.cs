@@ -23,5 +23,23 @@ namespace nanoSDK_APIClient.Windows.Auth
         {
             InitializeComponent();
         }
+
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void DragMoveStackPanel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        private void LoginBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (API.Login(userInput.Text, PassInput.Text))
+            {
+                MessageBox.Show("LoggedIn");
+            }
+        }
     }
 }
