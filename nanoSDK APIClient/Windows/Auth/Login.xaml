@@ -1,0 +1,24 @@
+﻿<Window x:Class="nanoSDK_APIClient.Windows.Auth.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:nanoSDK_APIClient.Windows.Auth"
+        mc:Ignorable="d"
+        Title="nanoSDK_Login"
+        Height="500"
+        Width="420"
+        Background="Transparent"
+        AllowsTransparency="True"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        FontFamily="/Fonts/Roboto">
+    <Border Background="#23272a" CornerRadius="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+    </Border>
+</Window>
