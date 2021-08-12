@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,25 @@ namespace nanoSDK_APIClient.Windows.Auth
         private void DragMoveStackPanel_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
+        }
+
+        private void LoginBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Login loginwin = new Login();
+            loginwin.InitializeComponent();
+            loginwin.Show();
+            Close();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            RegisterBtn.IsChecked = true;
+        }
+
+        private void DiscordBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string discordUrl = "https://nanosdk.net/discord";
+            Process.Start(discordUrl);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,8 +39,27 @@ namespace nanoSDK_APIClient.Windows.Auth
         {
             if (API.Login(userInput.Text, PassInput.Text))
             {
-                MessageBox.Show("LoggedIn");
+                //correct
             }
+        }
+
+        private void RegisterBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Register registerwin = new Register();
+            registerwin.InitializeComponent();
+            registerwin.Show();
+            Close();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoginBtn.IsChecked = true;
+        }
+
+        private void DiscordBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string discordUrl = "https://nanosdk.net/discord";
+            Process.Start(discordUrl);
         }
     }
 }
