@@ -44,7 +44,7 @@
                 <Label Content="Options:" FontSize="10" Foreground="DarkGray"/>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <RadioButton Click="LoginBtn_Click" Content="Back" Margin="0,0,10,0" x:Name="LoginBtn" Style="{StaticResource CustomButton}" Foreground="White"/>
-                    <RadioButton Content="Register" Margin="0,0,10,0" x:Name="RegisterBtn" Style="{StaticResource CustomButton}" Foreground="White"/>
+                    <RadioButton Click="RegisterBtn_Click" Content="Register" Margin="0,0,10,0" x:Name="RegisterBtn" Style="{StaticResource CustomButton}" Foreground="White"/>
                     <RadioButton Click="DiscordBtn_Click" Content="Discord" x:Name="DiscordBtn" Margin="0,0,10,0" Style="{StaticResource CustomButton}" Foreground="White"/>
                     <RadioButton Content="About" x:Name="AboutBtn" Margin="0,0,10,0" Style="{StaticResource CustomButton}" Foreground="White"/>
                     <RadioButton Content="Dont Trust us?" x:Name="InformationBtn" Margin="0,0,10,0" Style="{StaticResource CustomButton}" Foreground="White"/>

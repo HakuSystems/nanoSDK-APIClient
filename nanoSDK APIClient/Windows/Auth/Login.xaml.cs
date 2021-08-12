@@ -37,14 +37,20 @@ namespace nanoSDK_APIClient.Windows.Auth
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
+            logLabel.Text = "Checking..";
             if (API.Login(userInput.Text, PassInput.Text))
             {
                 //correct
+            }
+            else
+            {
+                logLabel.Text = "Error";
             }
         }
 
         private void RegisterBtn_Click(object sender, RoutedEventArgs e)
         {
+            logLabel.Text = "Opening RegisterWindow";
             Register registerwin = new Register();
             registerwin.InitializeComponent();
             registerwin.Show();
@@ -54,12 +60,38 @@ namespace nanoSDK_APIClient.Windows.Auth
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             LoginBtn.IsChecked = true;
+            logLabel.Text = "Please Login";
         }
 
         private void DiscordBtn_Click(object sender, RoutedEventArgs e)
         {
+            logLabel.Text = "Opening URL..";
             string discordUrl = "https://nanosdk.net/discord";
             Process.Start(discordUrl);
+        }
+
+        private void RegisterBtn_MouseEnter(object sender, MouseEventArgs e)
+        {
+            RegisterBtn.IsChecked = true;
+            logLabel.Text = "Register?";
+        }
+
+        private void DiscordBtn_MouseEnter(object sender, MouseEventArgs e)
+        {
+            DiscordBtn.IsChecked = true;
+            logLabel.Text = "join?";
+        }
+
+        private void AboutBtn_MouseEnter(object sender, MouseEventArgs e)
+        {
+            AboutBtn.IsChecked = true;
+            logLabel.Text = "who are we?";
+        }
+
+        private void InformationBtn_MouseEnter(object sender, MouseEventArgs e)
+        {
+            InformationBtn.IsChecked = true;
+            logLabel.Text = "This is a new Login method where u only need our License Key. means that u dont have to specify a username or password but this also means u wont get so much support when u have login problems bc we cant see wich wich username u  are logged in.?";
         }
     }
 }

@@ -40,12 +40,23 @@
                 <Label Content="Options:" FontSize="10" Foreground="DarkGray"/>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <RadioButton Click="LoginBtn_Click" Content="Login" Margin="0,0,10,0" x:Name="LoginBtn" Style="{StaticResource CustomButton}" Foreground="White"/>
-                    <RadioButton Content="Register" Click="RegisterBtn_Click" Margin="0,0,10,0" x:Name="RegisterBtn" Style="{StaticResource CustomButton}" Foreground="White"/>
-                    <RadioButton Click="DiscordBtn_Click" Content="Discord" x:Name="DiscordBtn" Margin="0,0,10,0" Style="{StaticResource CustomButton}" Foreground="White"/>
-                    <RadioButton Content="About" x:Name="AboutBtn" Margin="0,0,10,0" Style="{StaticResource CustomButton}" Foreground="White"/>
-                    <RadioButton Content="Dont Trust us?" x:Name="InformationBtn" Margin="0,0,10,0" Style="{StaticResource CustomButton}" Foreground="White"/>
+                    <RadioButton Content="Register" MouseEnter="RegisterBtn_MouseEnter" Click="RegisterBtn_Click" Margin="0,0,10,0" x:Name="RegisterBtn" Style="{StaticResource CustomButton}" Foreground="White"/>
+                    <RadioButton Click="DiscordBtn_Click" MouseEnter="DiscordBtn_MouseEnter" Content="Discord" x:Name="DiscordBtn" Margin="0,0,10,0" Style="{StaticResource CustomButton}" Foreground="White"/>
+                    <RadioButton Content="About" MouseEnter="AboutBtn_MouseEnter" x:Name="AboutBtn" Margin="0,0,10,0" Style="{StaticResource CustomButton}" Foreground="White"/>
+                    <RadioButton Content="Dont Trust us?" MouseEnter="InformationBtn_MouseEnter" x:Name="InformationBtn" Margin="0,0,10,0" Style="{StaticResource CustomButton}" Foreground="White"/>
                 </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="10">
+                    <TextBlock TextWrapping="Wrap" Foreground="Wheat">
+                        # Why nanoSDK ask me for my password, email and my username? <LineBreak/><LineBreak/>
 
+- To make sure we give our tools to the right and trusted hands.<LineBreak/><LineBreak/>
+# Does nanoSDK collects user data such as ip addresses and hwid (hardware id)?<LineBreak/><LineBreak/>
+
+- Yes we do! and your password is hashed/salted and looks like this [SHU6y56EGDGghsdtyw6DG]
+And only people that can see your information are the developers and they still can't see it fully.
+                    </TextBlock>
+                    <TextBlock x:Name="logLabel" TextWrapping="WrapWithOverflow" FontSize="15" Foreground="White" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                </StackPanel>
             </StackPanel>
         </Grid>
     </Border>

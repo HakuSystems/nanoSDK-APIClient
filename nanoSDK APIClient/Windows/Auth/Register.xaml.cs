@@ -53,5 +53,17 @@ namespace nanoSDK_APIClient.Windows.Auth
             string discordUrl = "https://nanosdk.net/discord";
             Process.Start(discordUrl);
         }
+
+        private void RegisterBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (API.Register(userInput.Text, PassInput.Text, MailInput.Text, KeyInput.Text))
+            {
+                //Finish
+                Login loginwin = new Login();
+                loginwin.InitializeComponent();
+                loginwin.Show();
+                Close();
+            }
+        }
     }
 }
