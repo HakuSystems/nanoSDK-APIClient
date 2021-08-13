@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MaterialDesignThemes.Wpf;
 
 namespace nanoSDK_APIClient.Windows.Auth
 {
@@ -38,13 +39,9 @@ namespace nanoSDK_APIClient.Windows.Auth
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
             logLabel.Text = "Checking..";
-            if (API.Login(userInput.Text, PassInput.Text))
+            if (API.Login(userInput.Text, PassInput.Password))
             {
                 //correct
-            }
-            else
-            {
-                logLabel.Text = "Error";
             }
         }
 
@@ -92,6 +89,22 @@ namespace nanoSDK_APIClient.Windows.Auth
         {
             InformationBtn.IsChecked = true;
             logLabel.Text = "This is a new Login method where u only need our License Key. means that u dont have to specify a username or password but this also means u wont get so much support when u have login problems bc we cant see wich wich username u  are logged in.?";
+        }
+
+        private void ThemeBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            var paletteHelper = new PaletteHelper();
+            ITheme theme = paletteHelper.GetTheme();
+            theme.SetBaseTheme(Theme.Dark);
+            paletteHelper.SetTheme(theme);
+        }
+
+        private void ThemeBtn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            var paletteHelper = new PaletteHelper();
+            ITheme theme = paletteHelper.GetTheme();
+            theme.SetBaseTheme(Theme.Light);
+            paletteHelper.SetTheme(theme);
         }
     }
 }

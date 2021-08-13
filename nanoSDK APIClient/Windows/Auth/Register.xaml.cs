@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -56,7 +57,7 @@ namespace nanoSDK_APIClient.Windows.Auth
 
         private void RegisterBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (API.Register(userInput.Text, PassInput.Text, MailInput.Text, KeyInput.Text))
+            if (API.Register(userInput.Text, PassInput.Password, MailInput.Text, KeyInput.Password))
             {
                 //Finish
                 Login loginwin = new Login();
@@ -64,6 +65,22 @@ namespace nanoSDK_APIClient.Windows.Auth
                 loginwin.Show();
                 Close();
             }
+        }
+
+        private void ThemeBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            var paletteHelper = new PaletteHelper();
+            ITheme theme = paletteHelper.GetTheme();
+            theme.SetBaseTheme(Theme.Dark);
+            paletteHelper.SetTheme(theme);
+        }
+
+        private void ThemeBtn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            var paletteHelper = new PaletteHelper();
+            ITheme theme = paletteHelper.GetTheme();
+            theme.SetBaseTheme(Theme.Light);
+            paletteHelper.SetTheme(theme);
         }
     }
 }
