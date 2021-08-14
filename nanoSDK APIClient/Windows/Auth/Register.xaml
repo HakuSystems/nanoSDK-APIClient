@@ -19,6 +19,7 @@
         
         mc:Ignorable="d"
         Title="nanoSDK_Register"
+        WindowStartupLocation="CenterOwner"
         Height="500"
         Width="420"
         WindowStyle="None"

@@ -46,6 +46,9 @@ namespace nanoSDK_APIClient.Windows.Auth
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            var paletteHelper = new PaletteHelper();
+            ITheme theme = paletteHelper.GetTheme();
+            paletteHelper.SetTheme(theme);
             RegisterBtn.IsChecked = true;
         }
 
@@ -71,7 +74,7 @@ namespace nanoSDK_APIClient.Windows.Auth
         {
             var paletteHelper = new PaletteHelper();
             ITheme theme = paletteHelper.GetTheme();
-            theme.SetBaseTheme(Theme.Dark);
+            theme.SetBaseTheme(MaterialDesignThemes.Wpf.Theme.Dark);
             paletteHelper.SetTheme(theme);
         }
 
@@ -79,7 +82,7 @@ namespace nanoSDK_APIClient.Windows.Auth
         {
             var paletteHelper = new PaletteHelper();
             ITheme theme = paletteHelper.GetTheme();
-            theme.SetBaseTheme(Theme.Light);
+           theme.SetBaseTheme(MaterialDesignThemes.Wpf.Theme.Light);
             paletteHelper.SetTheme(theme);
         }
     }
