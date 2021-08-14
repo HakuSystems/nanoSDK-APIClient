@@ -212,15 +212,14 @@ namespace nanoSDK_APIClient
                                 ApplicationSettings.Register = true;
                             if (ApplicationSettings.DeveloperMode)
                             {
-                                bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Application is in Developer Mode, bypassing integrity and update check!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                                if (Result.Value)
+                                if (new nanoSDK_APIClient.Theme.CustomMessageBox("Application is in Developer Mode, bypassing integrity and update check!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
                                 {
                                 }
                                 File.Create(Environment.CurrentDirectory + "/integrity.log").Close();
                                 string hash = Security.Integrity(Process.GetCurrentProcess().MainModule.FileName);
                                 File.WriteAllText(Environment.CurrentDirectory + "/integrity.log", hash);
-                                bool? Result2 = new nanoSDK_APIClient.Theme.CustomMessageBox("Your applications hash has been saved to integrity.txt, please refer to this when your application is ready for release!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                                if (Result2.Value)
+                                bool? Result3 = new nanoSDK_APIClient.Theme.CustomMessageBox("Your applications hash has been saved to integrity.txt, please refer to this when your application is ready for release!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
+                                if (Result3.Value)
                                 {
                                 }
                             }
@@ -230,8 +229,7 @@ namespace nanoSDK_APIClient
                                 {
                                     if (ApplicationSettings.Hash != Security.Integrity(Process.GetCurrentProcess().MainModule.FileName))
                                     {
-                                        bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("File has been tampered with, couldn't verify integrity!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                                        if (Result.Value)
+                                        if (new Theme.CustomMessageBox("File has been tampered with, couldn't verify integrity!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
                                         {
                                             Process.GetCurrentProcess().Kill();
                                         }
@@ -239,8 +237,7 @@ namespace nanoSDK_APIClient
                                 }
                                 if (ApplicationSettings.Version != Version)
                                 {
-                                    bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox($"Update {ApplicationSettings.Version} available, redirecting to update!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                                    if (Result.Value)
+                                    if (new nanoSDK_APIClient.Theme.CustomMessageBox($"Update {ApplicationSettings.Version} available, redirecting to update!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
                                     {
                                         Process.Start(ApplicationSettings.Update_Link);
                                         Process.GetCurrentProcess().Kill();
@@ -250,8 +247,7 @@ namespace nanoSDK_APIClient
                             }
                             if (ApplicationSettings.Status == false)
                             {
-                                bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Looks like this application is disabled, please try again later!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                                if (Result.Value)
+                                if (new nanoSDK_APIClient.Theme.CustomMessageBox("Looks like this application is disabled, please try again later!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
                                 {
                                     Process.GetCurrentProcess().Kill();
                                 }
