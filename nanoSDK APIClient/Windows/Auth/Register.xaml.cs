@@ -62,12 +62,14 @@ namespace nanoSDK_APIClient.Windows.Auth
         {
             if (API.Register(userInput.Text, PassInput.Password, MailInput.Text, KeyInput.Password))
             {
-                //Finish
                 if (new nanoSDK_APIClient.Theme.CustomMessageBox("Register Valid, Loggin in now.", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
                 {
                     if (API.Login(userInput.Text, PassInput.Password))
                     {
-                        //Open Actuall Program.
+                        Main.updateChecking update = new Main.updateChecking();
+                        update.InitializeComponent();
+                        update.Show();
+                        Close();
                     }
                 }
             }

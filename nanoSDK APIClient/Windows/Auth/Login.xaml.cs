@@ -42,7 +42,10 @@ namespace nanoSDK_APIClient.Windows.Auth
             {
                 if (API.Login(userInput.Text, PassInput.Password))
                 {
-                    //open actual program
+                    Main.updateChecking update = new Main.updateChecking();
+                    update.InitializeComponent();
+                    update.Show();
+                    Close();
                 }
             }
             else
@@ -53,7 +56,10 @@ namespace nanoSDK_APIClient.Windows.Auth
                     {
                         if (new nanoSDK_APIClient.Theme.CustomMessageBox("Worked", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
                         {
-                            //open actual program
+                            Main.updateChecking update = new Main.updateChecking();
+                            update.InitializeComponent();
+                            update.Show();
+                            Close();
                         }
                     }
                     else
