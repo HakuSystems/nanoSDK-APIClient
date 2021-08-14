@@ -65,13 +65,21 @@
                         <StackPanel>
                             <materialDesign:Card Background="{DynamicResource MaterialDesignDarkBackground}">
                                 <StackPanel>
-                                    <TextBlock Foreground="White" Text="Username" TextWrapping="Wrap" Margin="5" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="UserTitle" Foreground="White" Text="Username" TextWrapping="Wrap" Margin="5" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </materialDesign:Card>
                             <TextBox x:Name="userInput" Style="{DynamicResource MaterialDesignTextBoxBase}" materialDesign:HintAssist.Hint="John Doe" ToolTip="Enter Username" Height="30" Foreground="White"/>
                             <materialDesign:Card Background="{DynamicResource MaterialDesignDarkBackground}">
-                                <StackPanel>
-                                    <TextBlock Foreground="White" Text="Password" TextWrapping="Wrap" Margin="5" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="passTitle" Foreground="White" Text="Password" TextWrapping="Wrap" Margin="5" VerticalAlignment="Center"/>
+                                    <RadioButton Visibility="Collapsed" x:Name="authChangerBtn" Click="authChangerBtn_Click" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
+                                        <RadioButton.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="UserQuestionOutline" Margin="5" Foreground="White"/>
+                                                <TextBlock Text="use Username/Password Again" VerticalAlignment="Center" Foreground="White"/>
+                                            </StackPanel>
+                                        </RadioButton.Content>
+                                    </RadioButton>
                                 </StackPanel>
                             </materialDesign:Card>
                             <PasswordBox x:Name="PassInput" Style="{DynamicResource MaterialDesignPasswordBox}" materialDesign:HintAssist.Hint="2QJwygjLt3HeLuWt" ToolTip="Enter Password" Height="30" Foreground="White"/>
@@ -80,8 +88,8 @@
                                 <RadioButton Click="LoginBtn_Click" Content="Login" Margin="0,0,10,0" x:Name="LoginBtn" Style="{DynamicResource MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
                                 <RadioButton Content="Register" Click="RegisterBtn_Click" Margin="0,0,10,0" x:Name="RegisterBtn" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
                                 <RadioButton Click="DiscordBtn_Click" Content="Discord" x:Name="DiscordBtn" Margin="0,0,10,0" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
-                                <RadioButton Content="About" x:Name="AboutBtn" Margin="0,0,10,0" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
-                                <RadioButton Content="Dont Trust us?" x:Name="InformationBtn" Margin="0,0,10,0" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
+                                <RadioButton Content="About" Click="AboutBtn_Click" x:Name="AboutBtn" Margin="0,0,10,0" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
+                                <RadioButton Click="InformationBtn_Click" Content="Dont Trust us?" x:Name="InformationBtn" Margin="0,0,10,0" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Margin="10">
                                 <TextBlock TextWrapping="Wrap" Foreground="Wheat" VerticalAlignment="Center"><Run Text="# Why nanoSDK ask me for my password, email and my username?"/><LineBreak/><LineBreak/><Run Text="- To make sure we give our tools to the right and trusted hands."/><LineBreak/><LineBreak/><Run Text="# Does nanoSDK collects user data such as ip addresses and hwid (hardware id)?"/><LineBreak/><LineBreak/><Run Text="- Yes we do! and your password is hashed/salted and looks like this [SHU6y56EGDGghsdtyw6DG] And only people that can see your information are the developers and they still can't see it fully."/></TextBlock>

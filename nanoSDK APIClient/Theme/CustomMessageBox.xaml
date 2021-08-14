@@ -39,6 +39,7 @@
                 </Button.Content>
             </Button>
         </StackPanel>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanContentScroll="True" Grid.Row="1" Grid.ColumnSpan="2">
         <Grid Grid.Row="1" Grid.ColumnSpan="2">
             <Grid Margin="20">
                 <Grid.RowDefinitions>
@@ -57,7 +58,9 @@
                         <materialDesign:TransitioningContent.OpeningEffects >
                             <materialDesign:TransitionEffect Kind="FadeIn" />
                         </materialDesign:TransitioningContent.OpeningEffects>
-                        <TextBox x:Name="txtMessage" HorizontalAlignment="Center" IsReadOnly="True" Grid.Row="0" Margin="5" materialDesign:HintAssist.Hint="" Foreground="White" FontSize="18" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        
+                            <TextBox x:Name="txtMessage" HorizontalAlignment="Center" IsReadOnly="True" Grid.Row="0" Margin="5" TextWrapping="Wrap" Foreground="White" FontSize="18" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        
                     </materialDesign:TransitioningContent>
 
                 </Grid>
@@ -77,5 +80,6 @@
 
             </Grid>
         </Grid>
+        </ScrollViewer>
     </Grid>
 </Window>

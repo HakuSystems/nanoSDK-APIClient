@@ -85,5 +85,13 @@ namespace nanoSDK_APIClient.Windows.Auth
            theme.SetBaseTheme(MaterialDesignThemes.Wpf.Theme.Light);
             paletteHelper.SetTheme(theme);
         }
+
+        private void AboutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (new nanoSDK_APIClient.Theme.CustomMessageBox($"nanoSDK is a modded SDK that bypasses and adds new futures, with nanoSDK you can upload avatars with a lot of polygons, make global audio sources without any limitations. {Environment.NewLine} nanoSDK is being constently updated and worked on and also have new futures that normal VRChat dosen't have such as remove missing scripts form a object automatecly, hwid spoofer etc. {Environment.NewLine} If you like nanoSDK and have new ideas or you just need help with our tool or help with custom content in general make sure you join our discord server.", Theme.CustomMessageBox.MessageType.Info, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
+            {
+
+            }
+        }
     }
 }

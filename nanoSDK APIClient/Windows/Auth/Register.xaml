@@ -98,7 +98,7 @@
                                 <RadioButton Click="LoginBtn_Click" Content="Back" Margin="0,0,10,0" x:Name="LoginBtn" Style="{DynamicResource MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
                                 <RadioButton Content="Register" Click="RegisterBtn_Click" Margin="0,0,10,0" x:Name="RegisterBtn" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
                                 <RadioButton Click="DiscordBtn_Click" Content="Discord" x:Name="DiscordBtn" Margin="0,0,10,0" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
-                                <RadioButton Content="About" x:Name="AboutBtn" Margin="0,0,10,0" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
+                                <RadioButton Click="AboutBtn_Click" Content="About" x:Name="AboutBtn" Margin="0,0,10,0" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
                             </StackPanel>
                         </StackPanel>
                     </materialDesign:Card>

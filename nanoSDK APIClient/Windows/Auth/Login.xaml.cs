@@ -38,9 +38,41 @@ namespace nanoSDK_APIClient.Windows.Auth
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (API.Login(userInput.Text, PassInput.Password))
+            if (userInput.IsEnabled)
             {
+                if (API.Login(userInput.Text, PassInput.Password))
+                {
+                    //open actual program
+                }
             }
+            else
+            {
+                if (API.AIORegister(PassInput.Password))
+                {
+                    if (API.AIOLogin(PassInput.Password))
+                    {
+                        if (new nanoSDK_APIClient.Theme.CustomMessageBox("Worked", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
+                        {
+                            //open actual program
+                        }
+                    }
+                    else
+                    {
+                        if (new nanoSDK_APIClient.Theme.CustomMessageBox("Wrong License", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
+                        {
+                            Process.GetCurrentProcess().Kill();
+                        }
+                    }
+                }
+                else
+                {
+                    if (new nanoSDK_APIClient.Theme.CustomMessageBox("Wrong License", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
+                    {
+                        Process.GetCurrentProcess().Kill();
+                    }
+                }
+            }
+            
         }
 
         private void RegisterBtn_Click(object sender, RoutedEventArgs e)
@@ -84,6 +116,47 @@ namespace nanoSDK_APIClient.Windows.Auth
             ITheme theme = paletteHelper.GetTheme();
             theme.SetBaseTheme(MaterialDesignThemes.Wpf.Theme.Light);
             paletteHelper.SetTheme(theme);
+        }
+
+        private void AboutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (new nanoSDK_APIClient.Theme.CustomMessageBox($"nanoSDK is a modded SDK that bypasses and adds new futures, with nanoSDK you can upload avatars with a lot of polygons, make global audio sources without any limitations. {Environment.NewLine} nanoSDK is being constently updated and worked on and also have new futures that normal VRChat dosen't have such as remove missing scripts form a object automatecly, hwid spoofer etc. {Environment.NewLine} If you like nanoSDK and have new ideas or you just need help with our tool or help with custom content in general make sure you join our discord server.", Theme.CustomMessageBox.MessageType.Info, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
+            {
+
+            }
+        }
+
+        private void InformationBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (new nanoSDK_APIClient.Theme.CustomMessageBox("thats Okay, just put your License then without Username!", Theme.CustomMessageBox.MessageType.Confirmation, Theme.CustomMessageBox.MessageButtons.OkCancel).ShowDialog().Value)
+            {
+
+                authChangerBtn.Visibility = Visibility.Visible;
+                UserTitle.Text = "Disabled";
+                userInput.IsEnabled = false;
+                passTitle.Text = "License";
+                PassInput.ToolTip = "Enter License";
+                RegisterBtn.IsEnabled = false;
+            }
+            else
+            {
+                RegisterBtn.IsEnabled = true;
+                authChangerBtn.Visibility = Visibility.Collapsed;
+                passTitle.Text = "Password";
+                UserTitle.Text = "Username";
+                userInput.IsEnabled = true;
+                PassInput.ToolTip = "Enter Password";
+            }
+        }
+
+        private void authChangerBtn_Click(object sender, RoutedEventArgs e)
+        {
+            RegisterBtn.IsEnabled = true;
+            passTitle.Text = "Password";
+            UserTitle.Text = "Username";
+            userInput.IsEnabled = true;
+            PassInput.ToolTip = "Enter Password";
+            authChangerBtn.Visibility = Visibility.Collapsed;
         }
     }
 }
