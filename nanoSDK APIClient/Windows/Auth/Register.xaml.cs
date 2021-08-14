@@ -54,8 +54,11 @@ namespace nanoSDK_APIClient.Windows.Auth
 
         private void DiscordBtn_Click(object sender, RoutedEventArgs e)
         {
-            string discordUrl = "https://nanosdk.net/discord";
-            Process.Start(discordUrl);
+            if (new nanoSDK_APIClient.Theme.CustomMessageBox("do you really want to Join our Discord?", Theme.CustomMessageBox.MessageType.Confirmation, Theme.CustomMessageBox.MessageButtons.YesNo).ShowDialog().Value)
+            {
+                string discordUrl = "https://nanosdk.net/discord";
+                Process.Start(discordUrl);
+            }
         }
 
         private void RegisterBtn_Click(object sender, RoutedEventArgs e)
@@ -63,10 +66,13 @@ namespace nanoSDK_APIClient.Windows.Auth
             if (API.Register(userInput.Text, PassInput.Password, MailInput.Text, KeyInput.Password))
             {
                 //Finish
-                Login loginwin = new Login();
-                loginwin.InitializeComponent();
-                loginwin.Show();
-                Close();
+                if (new nanoSDK_APIClient.Theme.CustomMessageBox("Register Valid, Loggin in now.", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
+                {
+                    if (API.Login(userInput.Text, PassInput.Password))
+                    {
+                        //Open Actuall Program.
+                    }
+                }
             }
         }
 

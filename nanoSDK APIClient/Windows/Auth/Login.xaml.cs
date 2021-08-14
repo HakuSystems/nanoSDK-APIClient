@@ -93,8 +93,11 @@ namespace nanoSDK_APIClient.Windows.Auth
 
         private void DiscordBtn_Click(object sender, RoutedEventArgs e)
         {
-            string discordUrl = "https://nanosdk.net/discord";
-            Process.Start(discordUrl);
+            if (new nanoSDK_APIClient.Theme.CustomMessageBox("do you really want to Join our Discord?", Theme.CustomMessageBox.MessageType.Confirmation, Theme.CustomMessageBox.MessageButtons.YesNo).ShowDialog().Value)
+            {
+                string discordUrl = "https://nanosdk.net/discord";
+                Process.Start(discordUrl);
+            }
         }
 
         private void InformationBtn_MouseEnter(object sender, MouseEventArgs e)
