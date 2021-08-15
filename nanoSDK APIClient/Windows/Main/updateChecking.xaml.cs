@@ -56,7 +56,10 @@ namespace nanoSDK_APIClient.Windows.Main
                 }
                 else
                 {
-                    //open actual program.
+                    DashBoardWindow dash = new DashBoardWindow();
+                    dash.InitializeComponent();
+                    dash.Show();
+                    Close();
                 }
             }
             catch (Exception ex)

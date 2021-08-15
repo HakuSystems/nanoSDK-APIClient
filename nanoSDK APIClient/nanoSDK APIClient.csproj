@@ -300,6 +300,9 @@
     <Compile Include="Windows\Auth\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Main\DashBoardWindow.xaml.cs">
+      <DependentUpon>DashBoardWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Main\updateChecking.xaml.cs">
       <DependentUpon>updateChecking.xaml</DependentUpon>
     </Compile>
@@ -356,6 +359,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Auth\Register.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Main\DashBoardWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

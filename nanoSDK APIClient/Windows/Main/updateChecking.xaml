@@ -32,11 +32,10 @@
         <Grid>
             <materialDesign:TransitioningContent>
                 <materialDesign:TransitioningContent.OpeningEffects>
-                    <materialDesign:TransitionEffect Kind="ExpandIn"/>
+                    <materialDesign:TransitionEffect Kind="SlideInFromLeft"/>
                 </materialDesign:TransitioningContent.OpeningEffects>
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock Foreground="White" Text="Updating Application Please Wait.." TextWrapping="Wrap">
-
                     </TextBlock>
                 </StackPanel>
             </materialDesign:TransitioningContent>
