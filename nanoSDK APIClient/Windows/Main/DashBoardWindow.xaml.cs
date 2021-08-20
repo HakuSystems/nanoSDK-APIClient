@@ -103,7 +103,7 @@ namespace nanoSDK_APIClient.Windows.Main
         private void DownloadAndRunLatestAsync()
         {
             downloadBtn.IsEnabled = false;
-            string website = "https://nanosdk.net/download/newest/";
+            string website = "https://nanosdk.net/download/apinewest/";
             WebClient client = new WebClient();
             client.DownloadProgressChanged += client_DownloadProgressChangedAsync;
             client.DownloadFileCompleted += client_DownloadProgressCompletedAsync;
