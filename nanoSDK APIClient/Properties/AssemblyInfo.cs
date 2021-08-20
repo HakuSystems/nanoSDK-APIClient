@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("nanoSDK APIClient")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("lyze")]
 [assembly: AssemblyProduct("nanoSDK APIClient")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
+[assembly: AssemblyCopyright("Copyright © lyze 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

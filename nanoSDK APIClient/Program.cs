@@ -14,7 +14,6 @@ namespace nanoSDK_APIClient
         [STAThread]
         static void Main()
         {
-            MessageBox.Show("Checking Updates");
             OnProgramStart.Initialize("nanoSDK Api", "859404", "ZrGWTpiQV8WGqC6zIPozy1zyC0LVyOlryUx", "1.0");
             App app = new App();
             app.InitializeComponent();

@@ -1,0 +1,44 @@
+﻿<Window x:Class="nanoSDK_APIClient.Windows.Main.updateChecking"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:nanoSDK_APIClient.Windows.Main"
+        mc:Ignorable="d"
+        
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{x:Null}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        UseLayoutRounding="True"
+        
+        Title="nanoSDK_Updater"
+        WindowStartupLocation="CenterScreen"
+        Height="500"
+        Width="800"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Loaded="Window_Loaded"
+        
+        >
+    <Border>
+        <Grid>
+            <materialDesign:TransitioningContent>
+                <materialDesign:TransitioningContent.OpeningEffects>
+                    <materialDesign:TransitionEffect Kind="SlideInFromLeft"/>
+                </materialDesign:TransitioningContent.OpeningEffects>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Foreground="White" Text="Updating Application Please Wait.." TextWrapping="Wrap">
+                    </TextBlock>
+                </StackPanel>
+            </materialDesign:TransitioningContent>
+        </Grid>
+    </Border>
+</Window>

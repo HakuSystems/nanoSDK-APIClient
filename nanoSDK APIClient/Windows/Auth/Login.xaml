@@ -1,24 +1,103 @@
-﻿<Window x:Class="nanoSDK_APIClient.Windows.Auth.Login"
+﻿<Window x:Name="window" x:Class="nanoSDK_APIClient.Windows.Auth.Login"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:nanoSDK_APIClient.Windows.Auth"
-        mc:Ignorable="d"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        UseLayoutRounding="True"
+        
+
+
+    mc:Ignorable="d"
         Title="nanoSDK_Login"
+        WindowStartupLocation="CenterOwner"
         Height="500"
         Width="420"
-        Background="Transparent"
-        AllowsTransparency="True"
-        ResizeMode="NoResize"
         WindowStyle="None"
-        FontFamily="/Fonts/Roboto">
-    <Border Background="#23272a" CornerRadius="10">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-        </Grid>
+        Loaded="Window_Loaded" Foreground="{x:Null}" ResizeMode="NoResize" ForceCursor="True"
+        >
+    <Border x:Name="border" Background="{DynamicResource MaterialDesignShadowBrush}" CornerRadius="10">
+        <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=FadeIn}">
+            <Grid x:Name="grid" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="10"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="1" Grid.Column="1" x:Name="DragMoveStackPanel" MouseDown="DragMoveStackPanel_MouseDown" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                    <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect Kind=SlideInFromTop}">
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                            <TextBlock Text="nanoSDK Login" Margin="5,0,0,0" FontSize="20" Foreground="White" TextAlignment="Center" TextWrapping="WrapWithOverflow" VerticalAlignment="Center"/>
+                            <ToggleButton x:Name="ThemeBtn" IsChecked="True" Checked="ThemeBtn_Checked" Unchecked="ThemeBtn_Unchecked" Style="{DynamicResource MaterialDesignToolButton}" Foreground="White" Height="30" Margin="5,0,0,0">
+                                <materialDesign:PackIcon Kind="ThemeLightDark"/>
+                            </ToggleButton>
+                            <Button x:Name="CloseBtn" Click="CloseBtn_Click" Style="{DynamicResource MaterialDesignFloatingActionButton}" Height="30" Width="30" Foreground="White" Margin="195,0,0,0">
+                                <Button.Content>
+                                    <materialDesign:PackIcon Kind="Close"/>
+                                </Button.Content>
+                            </Button>
+                        </StackPanel>
+                    </materialDesign:TransitioningContent>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2">
+                    <materialDesign:Card UniformCornerRadius="5" Background="{DynamicResource AttentionToActionBrush}">
+                        <materialDesign:Card.Effect>
+                            <DropShadowEffect ShadowDepth="1" Direction="0" Color="{DynamicResource MaterialDesignShadow}" Opacity="0.25" BlurRadius="10"/>
+                        </materialDesign:Card.Effect>
+                        <StackPanel>
+                            <materialDesign:Card Background="{DynamicResource MaterialDesignDarkBackground}">
+                                <StackPanel>
+                                    <TextBlock x:Name="UserTitle" Foreground="White" Text="Username" TextWrapping="Wrap" Margin="5" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </materialDesign:Card>
+                            <TextBox x:Name="userInput" Style="{DynamicResource MaterialDesignTextBoxBase}" materialDesign:HintAssist.Hint="John Doe" ToolTip="Enter Username" Height="30" Foreground="White"/>
+                            <materialDesign:Card Background="{DynamicResource MaterialDesignDarkBackground}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="passTitle" Foreground="White" Text="Password" TextWrapping="Wrap" Margin="5" VerticalAlignment="Center"/>
+                                    <RadioButton Visibility="Collapsed" x:Name="authChangerBtn" Click="authChangerBtn_Click" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
+                                        <RadioButton.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="UserQuestionOutline" Margin="5" Foreground="White"/>
+                                                <TextBlock Text="use Username/Password Again" VerticalAlignment="Center" Foreground="White"/>
+                                            </StackPanel>
+                                        </RadioButton.Content>
+                                    </RadioButton>
+                                </StackPanel>
+                            </materialDesign:Card>
+                            <PasswordBox x:Name="PassInput" Style="{DynamicResource MaterialDesignPasswordBox}" materialDesign:HintAssist.Hint="2QJwygjLt3HeLuWt" ToolTip="Enter Password" Height="30" Foreground="White"/>
+                            <Label Content="Options:" FontSize="10" Foreground="DarkGray" VerticalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <RadioButton Click="LoginBtn_Click" Content="Login" Margin="0,0,10,0" x:Name="LoginBtn" Style="{DynamicResource MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
+                                <RadioButton Content="Register" Click="RegisterBtn_Click" Margin="0,0,10,0" x:Name="RegisterBtn" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
+                                <RadioButton Click="DiscordBtn_Click" Content="Discord" x:Name="DiscordBtn" Margin="0,0,10,0" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
+                                <RadioButton Content="About" Click="AboutBtn_Click" x:Name="AboutBtn" Margin="0,0,10,0" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
+                                <RadioButton Click="InformationBtn_Click" Content="Dont Trust us?" x:Name="InformationBtn" Margin="0,0,10,0" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="10">
+                                <TextBlock TextWrapping="Wrap" Foreground="Wheat" VerticalAlignment="Center"><Run Text="# Why nanoSDK ask me for my password, email and my username?"/><LineBreak/><LineBreak/><Run Text="- To make sure we give our tools to the right and trusted hands."/><LineBreak/><LineBreak/><Run Text="# Does nanoSDK collects user data such as ip addresses and hwid (hardware id)?"/><LineBreak/><LineBreak/><Run Text="- Yes we do! and your password is hashed/salted and looks like this [SHU6y56EGDGghsdtyw6DG] And only people that can see your information are the developers and they still can't see it fully."/></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </materialDesign:Card>
+                </StackPanel>
+            </Grid>
+        </materialDesign:TransitioningContent>
     </Border>
 </Window>
