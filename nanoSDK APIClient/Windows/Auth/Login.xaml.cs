@@ -54,7 +54,7 @@ namespace nanoSDK_APIClient.Windows.Auth
                 {
                     if (API.AIOLogin(PassInput.Password))
                     {
-                        if (new nanoSDK_APIClient.Theme.CustomMessageBox("Worked", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
+                        if (new nanoSDK_APIClient.Theme.CustomMessageBox("Registered and Logged In!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
                         {
                             Main.updateChecking update = new Main.updateChecking();
                             update.InitializeComponent();
@@ -78,7 +78,6 @@ namespace nanoSDK_APIClient.Windows.Auth
                     }
                 }
             }
-            
         }
 
         private void RegisterBtn_Click(object sender, RoutedEventArgs e)
@@ -139,33 +138,66 @@ namespace nanoSDK_APIClient.Windows.Auth
         {
             if (new nanoSDK_APIClient.Theme.CustomMessageBox("thats Okay, just put your License then without Username!", Theme.CustomMessageBox.MessageType.Confirmation, Theme.CustomMessageBox.MessageButtons.OkCancel).ShowDialog().Value)
             {
-
-                authChangerBtn.Visibility = Visibility.Visible;
-                UserTitle.Text = "Disabled";
-                userInput.IsEnabled = false;
-                passTitle.Text = "License";
-                PassInput.ToolTip = "Enter License";
-                RegisterBtn.IsEnabled = false;
+                ChangeNormalData();
             }
             else
             {
-                RegisterBtn.IsEnabled = true;
-                authChangerBtn.Visibility = Visibility.Collapsed;
-                passTitle.Text = "Password";
-                UserTitle.Text = "Username";
-                userInput.IsEnabled = true;
-                PassInput.ToolTip = "Enter Password";
+                BackToNormalData();
             }
         }
 
-        private void authChangerBtn_Click(object sender, RoutedEventArgs e)
+        private void ChangeNormalData()
         {
+            AIOLoginBtn.Visibility = Visibility.Visible;
+            LoginBtn.Content = "Register";
+            RegisterBtn.Visibility = Visibility.Collapsed;
+
+            authChangerBtn.Visibility = Visibility.Visible;
+            UserTitle.Text = "Disabled";
+            userInput.IsEnabled = false;
+            passTitle.Text = "License";
+            PassInput.ToolTip = "Enter License";
+            RegisterBtn.IsEnabled = false;
+        }
+
+        private void BackToNormalData()
+        {
+            AIOLoginBtn.Visibility = Visibility.Collapsed;
+            LoginBtn.Content = "Login";
+            RegisterBtn.Visibility = Visibility.Visible;
+
             RegisterBtn.IsEnabled = true;
+            authChangerBtn.Visibility = Visibility.Collapsed;
             passTitle.Text = "Password";
             UserTitle.Text = "Username";
             userInput.IsEnabled = true;
             PassInput.ToolTip = "Enter Password";
-            authChangerBtn.Visibility = Visibility.Collapsed;
+        }
+
+        private void authChangerBtn_Click(object sender, RoutedEventArgs e)
+        {
+            BackToNormalData();
+        }
+
+        private void AIOLoginBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (API.AIOLogin(PassInput.Password))
+            {
+                if (new nanoSDK_APIClient.Theme.CustomMessageBox("Logged In!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
+                {
+                    Main.updateChecking update = new Main.updateChecking();
+                    update.InitializeComponent();
+                    update.Show();
+                    Close();
+                }
+            }
+            else
+            {
+                if (new nanoSDK_APIClient.Theme.CustomMessageBox("Wrong License / Or not Registered", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
+                {
+                    Process.GetCurrentProcess().Kill();
+                }
+            }
         }
     }
 }

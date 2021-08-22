@@ -60,7 +60,6 @@ namespace nanoSDK_APIClient.Windows.Main
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Getdata();
-            
         }
 
         private void Getdata()
@@ -72,7 +71,7 @@ namespace nanoSDK_APIClient.Windows.Main
             }
             else if (currentStatus == null)
             {
-                dataInformation.Text = $"LoggedIn as: {User.Username} {Environment.NewLine} with ID: {User.ID} {Environment.NewLine} E-mail: {User.Email} {Environment.NewLine} Status: Valid";
+                dataInformation.Text = $"LoggedIn as: {User.Username} {Environment.NewLine} with ID: {User.ID} {Environment.NewLine} E-mail: {User.Email} {Environment.NewLine} Status: InValid";
 
             }
             else
@@ -105,8 +104,9 @@ namespace nanoSDK_APIClient.Windows.Main
             downloadBtn.IsEnabled = false;
             string website = "https://nanosdk.net/download/apinewest/";
             WebClient client = new WebClient();
-            client.DownloadProgressChanged += client_DownloadProgressChangedAsync;
+            client.Headers.Set(HttpRequestHeader.UserAgent, "Webkit Gecko wHTTPS (Keep Alive 55)");
             client.DownloadFileCompleted += client_DownloadProgressCompletedAsync;
+            client.DownloadProgressChanged += client_DownloadProgressChangedAsync;
             client.DownloadFileAsync(new Uri(website), assetName);
         }
 

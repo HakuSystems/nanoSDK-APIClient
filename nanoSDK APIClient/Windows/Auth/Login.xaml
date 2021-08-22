@@ -80,6 +80,14 @@
                                             </StackPanel>
                                         </RadioButton.Content>
                                     </RadioButton>
+                                    <RadioButton Visibility="Collapsed" x:Name="AIOLoginBtn" Click="AIOLoginBtn_Click" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
+                                        <RadioButton.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="Login" Margin="5" Foreground="White"/>
+                                                <TextBlock Text="Login" VerticalAlignment="Center" Foreground="White"/>
+                                            </StackPanel>
+                                        </RadioButton.Content>
+                                    </RadioButton>
                                 </StackPanel>
                             </materialDesign:Card>
                             <PasswordBox x:Name="PassInput" Style="{DynamicResource MaterialDesignPasswordBox}" materialDesign:HintAssist.Hint="2QJwygjLt3HeLuWt" ToolTip="Enter Password" Height="30" Foreground="White"/>
