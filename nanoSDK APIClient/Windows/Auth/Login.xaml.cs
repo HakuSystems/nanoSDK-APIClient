@@ -42,7 +42,7 @@ namespace nanoSDK_APIClient.Windows.Auth
             {
                 if (API.Login(userInput.Text, PassInput.Password))
                 {
-                    Main.updateChecking update = new Main.updateChecking();
+                    Main.DashBoardWindow update = new Main.DashBoardWindow();
                     update.InitializeComponent();
                     update.Show();
                     Close();
@@ -56,7 +56,7 @@ namespace nanoSDK_APIClient.Windows.Auth
                     {
                         if (new nanoSDK_APIClient.Theme.CustomMessageBox("Registered and Logged In!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
                         {
-                            Main.updateChecking update = new Main.updateChecking();
+                            Main.DashBoardWindow update = new Main.DashBoardWindow();
                             update.InitializeComponent();
                             update.Show();
                             Close();
@@ -185,7 +185,7 @@ namespace nanoSDK_APIClient.Windows.Auth
             {
                 if (new nanoSDK_APIClient.Theme.CustomMessageBox("Logged In!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
                 {
-                    Main.updateChecking update = new Main.updateChecking();
+                    Main.DashBoardWindow update = new Main.DashBoardWindow();
                     update.InitializeComponent();
                     update.Show();
                     Close();

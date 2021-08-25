@@ -16,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using nanoSDK_APIClient.Windows.Auth;
 
 namespace nanoSDK_APIClient.Windows.Main
 {
@@ -56,7 +57,7 @@ namespace nanoSDK_APIClient.Windows.Main
                 }
                 else
                 {
-                    DashBoardWindow dash = new DashBoardWindow();
+                    Login dash = new Login();
                     dash.InitializeComponent();
                     dash.Show();
                     Close();
