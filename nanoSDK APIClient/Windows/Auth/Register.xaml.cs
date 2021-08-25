@@ -66,7 +66,7 @@ namespace nanoSDK_APIClient.Windows.Auth
                 {
                     if (API.Login(userInput.Text, PassInput.Password))
                     {
-                        Main.updateChecking update = new Main.updateChecking();
+                        Main.DashBoardWindow update = new Main.DashBoardWindow();
                         update.InitializeComponent();
                         update.Show();
                         Close();

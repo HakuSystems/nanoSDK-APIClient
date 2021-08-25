@@ -59,6 +59,7 @@ namespace nanoSDK_APIClient.Windows.Main
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            API.Log(User.Username, "Viewed Dashboard Page");
             Getdata();
         }
 

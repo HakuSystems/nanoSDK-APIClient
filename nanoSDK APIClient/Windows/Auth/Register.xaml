@@ -95,10 +95,39 @@
 
                             <Label Content="Options:" FontSize="10" Foreground="DarkGray" VerticalAlignment="Center"/>
                             <StackPanel Orientation="Horizontal" Margin="5">
-                                <RadioButton Click="LoginBtn_Click" Content="Back" Margin="0,0,10,0" x:Name="LoginBtn" Style="{DynamicResource MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
-                                <RadioButton Content="Register" Click="RegisterBtn_Click" Margin="0,0,10,0" x:Name="RegisterBtn" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
-                                <RadioButton Click="DiscordBtn_Click" Content="Discord" x:Name="DiscordBtn" Margin="0,0,10,0" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
-                                <RadioButton Click="AboutBtn_Click" Content="About" x:Name="AboutBtn" Margin="0,0,10,0" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
+                                <RadioButton Click="LoginBtn_Click" Margin="0,0,10,0" x:Name="LoginBtn" Style="{DynamicResource MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center">
+                                    <RadioButton.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="ArrowBack"/>
+                                            <TextBlock Text="Back" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </RadioButton.Content>
+                                </RadioButton>
+                                <RadioButton Click="RegisterBtn_Click" Margin="0,0,10,0" x:Name="RegisterBtn" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center">
+                                    <RadioButton.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Foreground="White" Kind="RegisterOutline"/>
+                                            <TextBlock Foreground="White" TextWrapping="Wrap" Text="Register" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </RadioButton.Content>
+                                </RadioButton>
+                                <RadioButton Click="DiscordBtn_Click" x:Name="DiscordBtn" Margin="0,0,10,0" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center">
+                                    <RadioButton.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Discord" Foreground="White"/>
+                                            <TextBlock Foreground="White" Text="Discord" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                        
+                                    </RadioButton.Content>
+                                </RadioButton>
+                                <RadioButton Click="AboutBtn_Click" x:Name="AboutBtn" Margin="0,0,10,0" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center">
+                                    <RadioButton.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="AboutOutline" Foreground="White"/>
+                                            <TextBlock Text="About" Foreground="White" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                                        </StackPanel>
+                                    </RadioButton.Content>
+                                </RadioButton>
                             </StackPanel>
                         </StackPanel>
                     </materialDesign:Card>

@@ -42,7 +42,7 @@ namespace nanoSDK_APIClient.Windows.Auth
             {
                 if (API.Login(userInput.Text, PassInput.Password))
                 {
-                    Main.updateChecking update = new Main.updateChecking();
+                    Main.DashBoardWindow update = new Main.DashBoardWindow();
                     update.InitializeComponent();
                     update.Show();
                     Close();
@@ -56,7 +56,7 @@ namespace nanoSDK_APIClient.Windows.Auth
                     {
                         if (new nanoSDK_APIClient.Theme.CustomMessageBox("Registered and Logged In!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
                         {
-                            Main.updateChecking update = new Main.updateChecking();
+                            Main.DashBoardWindow update = new Main.DashBoardWindow();
                             update.InitializeComponent();
                             update.Show();
                             Close();
@@ -90,6 +90,7 @@ namespace nanoSDK_APIClient.Windows.Auth
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            BackToNormalData();
             var paletteHelper = new PaletteHelper();
             ITheme theme = paletteHelper.GetTheme();
             paletteHelper.SetTheme(theme);
@@ -149,8 +150,11 @@ namespace nanoSDK_APIClient.Windows.Auth
         private void ChangeNormalData()
         {
             AIOLoginBtn.Visibility = Visibility.Visible;
-            LoginBtn.Content = "Register";
+            loginBtnContent.Text = "Register";
+            loginBtnIcon.Kind = PackIconKind.RegisterOutline;
             RegisterBtn.Visibility = Visibility.Collapsed;
+
+            InformationBtn.Visibility = Visibility.Collapsed;
 
             authChangerBtn.Visibility = Visibility.Visible;
             UserTitle.Text = "Disabled";
@@ -163,8 +167,11 @@ namespace nanoSDK_APIClient.Windows.Auth
         private void BackToNormalData()
         {
             AIOLoginBtn.Visibility = Visibility.Collapsed;
-            LoginBtn.Content = "Login";
+            loginBtnContent.Text = "Login";
+            loginBtnIcon.Kind = PackIconKind.LoginVariant;
             RegisterBtn.Visibility = Visibility.Visible;
+
+            InformationBtn.Visibility = Visibility.Visible;
 
             RegisterBtn.IsEnabled = true;
             authChangerBtn.Visibility = Visibility.Collapsed;
@@ -185,7 +192,7 @@ namespace nanoSDK_APIClient.Windows.Auth
             {
                 if (new nanoSDK_APIClient.Theme.CustomMessageBox("Logged In!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
                 {
-                    Main.updateChecking update = new Main.updateChecking();
+                    Main.DashBoardWindow update = new Main.DashBoardWindow();
                     update.InitializeComponent();
                     update.Show();
                     Close();

@@ -74,8 +74,17 @@
                     <TextBlock x:Name="summaryText" Margin="10" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <materialDesign:TransitioningContent>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <RadioButton x:Name="downloadBtn" Click="downloadBtn_Click" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}" Foreground="White" Content="Download Latest Unitypackage"/>
-                            
+                            <RadioButton x:Name="downloadBtn" Click="downloadBtn_Click" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}" Foreground="White">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="DownloadBoxOutline" Margin="0,0,5,0" Foreground="White"/>
+                                        <TextBlock Foreground="White" VerticalAlignment="Center" Text="Download Latest Unitypackage"/>
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
+
+
+
                         </StackPanel>
                     </materialDesign:TransitioningContent>
                 </StackPanel>
