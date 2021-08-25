@@ -90,6 +90,7 @@ namespace nanoSDK_APIClient.Windows.Auth
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            BackToNormalData();
             var paletteHelper = new PaletteHelper();
             ITheme theme = paletteHelper.GetTheme();
             paletteHelper.SetTheme(theme);
@@ -149,8 +150,11 @@ namespace nanoSDK_APIClient.Windows.Auth
         private void ChangeNormalData()
         {
             AIOLoginBtn.Visibility = Visibility.Visible;
-            LoginBtn.Content = "Register";
+            loginBtnContent.Text = "Register";
+            loginBtnIcon.Kind = PackIconKind.RegisterOutline;
             RegisterBtn.Visibility = Visibility.Collapsed;
+
+            InformationBtn.Visibility = Visibility.Collapsed;
 
             authChangerBtn.Visibility = Visibility.Visible;
             UserTitle.Text = "Disabled";
@@ -163,8 +167,11 @@ namespace nanoSDK_APIClient.Windows.Auth
         private void BackToNormalData()
         {
             AIOLoginBtn.Visibility = Visibility.Collapsed;
-            LoginBtn.Content = "Login";
+            loginBtnContent.Text = "Login";
+            loginBtnIcon.Kind = PackIconKind.LoginVariant;
             RegisterBtn.Visibility = Visibility.Visible;
+
+            InformationBtn.Visibility = Visibility.Visible;
 
             RegisterBtn.IsEnabled = true;
             authChangerBtn.Visibility = Visibility.Collapsed;

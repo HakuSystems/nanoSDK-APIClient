@@ -83,7 +83,7 @@
                                     <RadioButton Visibility="Collapsed" x:Name="AIOLoginBtn" Click="AIOLoginBtn_Click" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
                                         <RadioButton.Content>
                                             <StackPanel Orientation="Horizontal">
-                                                <materialDesign:PackIcon Kind="Login" Margin="5" Foreground="White"/>
+                                                <materialDesign:PackIcon Kind="LoginVariant" Margin="5" Foreground="White"/>
                                                 <TextBlock Text="Login" VerticalAlignment="Center" Foreground="White"/>
                                             </StackPanel>
                                         </RadioButton.Content>
@@ -92,12 +92,49 @@
                             </materialDesign:Card>
                             <PasswordBox x:Name="PassInput" Style="{DynamicResource MaterialDesignPasswordBox}" materialDesign:HintAssist.Hint="2QJwygjLt3HeLuWt" ToolTip="Enter Password" Height="30" Foreground="White"/>
                             <Label Content="Options:" FontSize="10" Foreground="DarkGray" VerticalAlignment="Center"/>
-                            <StackPanel Orientation="Horizontal" Margin="5">
-                                <RadioButton Click="LoginBtn_Click" Content="Login" Margin="0,0,10,0" x:Name="LoginBtn" Style="{DynamicResource MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
-                                <RadioButton Content="Register" Click="RegisterBtn_Click" Margin="0,0,10,0" x:Name="RegisterBtn" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
-                                <RadioButton Click="DiscordBtn_Click" Content="Discord" x:Name="DiscordBtn" Margin="0,0,10,0" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
-                                <RadioButton Content="About" Click="AboutBtn_Click" x:Name="AboutBtn" Margin="0,0,10,0" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
-                                <RadioButton Click="InformationBtn_Click" Content="Dont Trust us?" x:Name="InformationBtn" Margin="0,0,10,0" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Center">
+                                <RadioButton Click="LoginBtn_Click" Margin="0,0,10,0" x:Name="LoginBtn" Style="{DynamicResource MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center">
+                                    <RadioButton.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon x:Name="loginBtnIcon" Kind="LoginVariant" Foreground="White"/>
+                                            <TextBlock x:Name="loginBtnContent" Text="Login" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="White"/>
+                                        </StackPanel>
+                                    </RadioButton.Content>
+                                </RadioButton>
+                                <RadioButton Click="RegisterBtn_Click" Margin="0,0,10,0" x:Name="RegisterBtn" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center">
+                                    <RadioButton.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="RegisterOutline" Foreground="White"/>
+                                            <TextBlock Text="Register" VerticalAlignment="Center" TextWrapping="Wrap" Foreground="White"/>
+                                        </StackPanel>
+                                    </RadioButton.Content>
+                                </RadioButton>
+                                <RadioButton Click="DiscordBtn_Click" x:Name="DiscordBtn" Margin="0,0,10,0" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center">
+                                    <RadioButton.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="Discord" Foreground="White"/>
+                                            <TextBlock Foreground="White" Text="Discord" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </RadioButton.Content>
+                                </RadioButton>
+                                <RadioButton Click="AboutBtn_Click" x:Name="AboutBtn" Margin="0,0,10,0" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center">
+                                    <RadioButton.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="AboutOutline" Foreground="White"/>
+                                            <TextBlock Text="About" Foreground="White" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                                        </StackPanel>
+                                    </RadioButton.Content>
+                                </RadioButton>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Grid.Row="2" Grid.RowSpan="3" HorizontalAlignment="Center">
+                                <RadioButton Click="InformationBtn_Click" Visibility="Collapsed" x:Name="InformationBtn" Margin="0,0,10,0" Style="{DynamicResource  MaterialDesignChoiceChipAccentOutlineRadioButton}" Foreground="White" VerticalAlignment="Center">
+                                    <RadioButton.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="HeadThinkingOutline" Foreground="White"/>
+                                            <TextBlock Text="Dont Trust us?" VerticalAlignment="Center" TextWrapping="Wrap" Foreground="White"/>
+                                        </StackPanel>
+                                    </RadioButton.Content>
+                                </RadioButton>
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Margin="10">
                                 <TextBlock TextWrapping="Wrap" Foreground="Wheat" VerticalAlignment="Center"><Run Text="# Why nanoSDK ask me for my password, email and my username?"/><LineBreak/><LineBreak/><Run Text="- To make sure we give our tools to the right and trusted hands."/><LineBreak/><LineBreak/><Run Text="# Does nanoSDK collects user data such as ip addresses and hwid (hardware id)?"/><LineBreak/><LineBreak/><Run Text="- Yes we do! and your password is hashed/salted and looks like this [SHU6y56EGDGghsdtyw6DG] And only people that can see your information are the developers and they still can't see it fully."/></TextBlock>
