@@ -57,9 +57,9 @@ namespace nanoSDK_APIClient.Windows.Main
                 }
                 else
                 {
-                    Login dash = new Login();
-                    dash.InitializeComponent();
-                    dash.Show();
+                    AuthTransitoner login = new AuthTransitoner();
+                    login.InitializeComponent();
+                    login.Show();
                     Close();
                 }
             }

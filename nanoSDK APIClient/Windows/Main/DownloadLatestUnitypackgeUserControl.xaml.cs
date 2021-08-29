@@ -19,21 +19,15 @@ using System.Windows.Shapes;
 namespace nanoSDK_APIClient.Windows.Main
 {
     /// <summary>
-    /// Interaction logic for DashBoardWindow.xaml
+    /// Interaction logic for DownloadLatestUnitypackgeUserControl.xaml
     /// </summary>
-    public partial class DashBoardWindow : Window
+    public partial class DownloadLatestUnitypackgeUserControl : UserControl
     {
-
         public static string assetName = "LatestUnitypackage.unitypackage";
 
-        public DashBoardWindow()
+        public DownloadLatestUnitypackgeUserControl()
         {
             InitializeComponent();
-        }
-
-        private void DragMoveStackPanel_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
         }
 
         private void ThemeBtn_Checked(object sender, RoutedEventArgs e)
@@ -54,31 +48,33 @@ namespace nanoSDK_APIClient.Windows.Main
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            ((MainTransitioner)Window.GetWindow(this)).Close();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            API.Log(User.Username, "Viewed Dashboard Page");
+            API.Log(User.Username, "Login");
             Getdata();
+            var paletteHelper = new PaletteHelper();
+            ITheme theme = paletteHelper.GetTheme();
+            paletteHelper.SetTheme(theme);
         }
 
         private void Getdata()
         {
             string currentStatus = User.UserVariable;
+            if (currentStatus == "Developer" || currentStatus == "Moderator")
+            {
+                AdminPanelBtn.Visibility = Visibility.Visible;
+            }
             if (currentStatus == null || User.Username == null || User.ID == null || User.Email == null || User.HWID == null)
             {
-                dataInformation.Text = $"LoggedIn as: Null {Environment.NewLine} with ID: Null {Environment.NewLine} E-mail: Null {Environment.NewLine} Status: InValid";
-            }
-            else if (currentStatus == null)
-            {
-                dataInformation.Text = $"LoggedIn as: {User.Username} {Environment.NewLine} with ID: {User.ID} {Environment.NewLine} E-mail: {User.Email} {Environment.NewLine} Status: InValid";
-
+                API.Log(User.Username, "Invalid UserInformation");
+                Process.GetCurrentProcess().Kill();
             }
             else
             {
-                dataInformation.Text = $"LoggedIn as: {User.Username} {Environment.NewLine} with ID: {User.ID} {Environment.NewLine} E-mail: {User.Email} {Environment.NewLine} Status: {User.UserVariable}";
-
+                API.Log(User.Username, "Valid User"); 
             }
             TitleText.Text = $"Welcome, {User.Username}";
             summaryText.Text = $"This tool is used to download/update nanoSDK.";
@@ -108,7 +104,19 @@ namespace nanoSDK_APIClient.Windows.Main
             client.Headers.Set(HttpRequestHeader.UserAgent, "Webkit Gecko wHTTPS (Keep Alive 55)");
             client.DownloadFileCompleted += client_DownloadProgressCompletedAsync;
             client.DownloadProgressChanged += client_DownloadProgressChangedAsync;
-            client.DownloadFileAsync(new Uri(website), assetName);
+            try
+            {
+                client.DownloadFileAsync(new Uri(website), assetName);
+            }
+            catch (Exception ex)
+            {
+                if (new Theme.CustomMessageBox(ex.Message, Theme.CustomMessageBox.MessageType.Error, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
+                {
+
+                }
+            }
+            
+            API.Log(User.Username, "Started UnityDownload");
         }
 
         private void client_DownloadProgressCompletedAsync(object sender, AsyncCompletedEventArgs e)

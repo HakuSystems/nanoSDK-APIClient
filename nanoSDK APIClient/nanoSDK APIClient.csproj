@@ -294,14 +294,23 @@
     <Compile Include="Theme\CustomMessageBox.xaml.cs">
       <DependentUpon>CustomMessageBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Auth\Login.xaml.cs">
-      <DependentUpon>Login.xaml</DependentUpon>
+    <Compile Include="Windows\Auth\AuthTransitoner.xaml.cs">
+      <DependentUpon>AuthTransitoner.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Auth\Register.xaml.cs">
-      <DependentUpon>Register.xaml</DependentUpon>
+    <Compile Include="Windows\Auth\LoginUserControl.xaml.cs">
+      <DependentUpon>LoginUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Main\DashBoardWindow.xaml.cs">
-      <DependentUpon>DashBoardWindow.xaml</DependentUpon>
+    <Compile Include="Windows\Auth\RegisterUserControl.xaml.cs">
+      <DependentUpon>RegisterUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Main\AccountInformationUserControl.xaml.cs">
+      <DependentUpon>AccountInformationUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Main\DownloadLatestUnitypackgeUserControl.xaml.cs">
+      <DependentUpon>DownloadLatestUnitypackgeUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Main\MainTransitioner.xaml.cs">
+      <DependentUpon>MainTransitioner.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Main\updateChecking.xaml.cs">
       <DependentUpon>updateChecking.xaml</DependentUpon>
@@ -354,15 +363,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Auth\Login.xaml">
+    <Page Include="Windows\Auth\AuthTransitoner.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Auth\Register.xaml">
+    <Page Include="Windows\Auth\LoginUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Main\DashBoardWindow.xaml">
+    <Page Include="Windows\Auth\RegisterUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Main\AccountInformationUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Main\DownloadLatestUnitypackgeUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Main\MainTransitioner.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

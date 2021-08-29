@@ -12,36 +12,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace nanoSDK_APIClient.Windows.Auth
 {
     /// <summary>
-    /// Interaction logic for Register.xaml
+    /// Interaction logic for RegisterUserControl.xaml
     /// </summary>
-    public partial class Register : Window
+    public partial class RegisterUserControl : UserControl
     {
-        public Register()
+        public RegisterUserControl()
         {
             InitializeComponent();
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
-            Close();
-        }
-
-        private void DragMoveStackPanel_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
-        }
-
-        private void LoginBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Login loginwin = new Login();
-            loginwin.InitializeComponent();
-            loginwin.Show();
-            Close();
+            ((AuthTransitoner)Window.GetWindow(this)).Close();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -66,10 +54,10 @@ namespace nanoSDK_APIClient.Windows.Auth
                 {
                     if (API.Login(userInput.Text, PassInput.Password))
                     {
-                        Main.DashBoardWindow update = new Main.DashBoardWindow();
+                        Main.MainTransitioner update = new Main.MainTransitioner();
                         update.InitializeComponent();
                         update.Show();
-                        Close();
+                        ((AuthTransitoner)Window.GetWindow(this)).Close();
                     }
                 }
             }
@@ -87,7 +75,7 @@ namespace nanoSDK_APIClient.Windows.Auth
         {
             var paletteHelper = new PaletteHelper();
             ITheme theme = paletteHelper.GetTheme();
-           theme.SetBaseTheme(MaterialDesignThemes.Wpf.Theme.Light);
+            theme.SetBaseTheme(MaterialDesignThemes.Wpf.Theme.Light);
             paletteHelper.SetTheme(theme);
         }
 

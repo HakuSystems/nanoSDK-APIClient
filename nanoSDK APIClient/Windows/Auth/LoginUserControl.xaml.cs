@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -11,29 +12,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MaterialDesignThemes.Wpf;
 
 namespace nanoSDK_APIClient.Windows.Auth
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for LoginUserControl.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class LoginUserControl : UserControl
     {
-        public Login()
+        public LoginUserControl()
         {
             InitializeComponent();
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
-            Close();
-        }
-
-        private void DragMoveStackPanel_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
+            ((AuthTransitoner)Window.GetWindow(this)).Close();
         }
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
@@ -42,10 +38,10 @@ namespace nanoSDK_APIClient.Windows.Auth
             {
                 if (API.Login(userInput.Text, PassInput.Password))
                 {
-                    Main.DashBoardWindow update = new Main.DashBoardWindow();
+                    Main.MainTransitioner update = new Main.MainTransitioner();
                     update.InitializeComponent();
                     update.Show();
-                    Close();
+                    ((AuthTransitoner)Window.GetWindow(this)).Close();
                 }
             }
             else
@@ -56,10 +52,10 @@ namespace nanoSDK_APIClient.Windows.Auth
                     {
                         if (new nanoSDK_APIClient.Theme.CustomMessageBox("Registered and Logged In!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
                         {
-                            Main.DashBoardWindow update = new Main.DashBoardWindow();
+                            Main.MainTransitioner update = new Main.MainTransitioner();
                             update.InitializeComponent();
                             update.Show();
-                            Close();
+                            ((AuthTransitoner)Window.GetWindow(this)).Close();
                         }
                     }
                     else
@@ -78,14 +74,6 @@ namespace nanoSDK_APIClient.Windows.Auth
                     }
                 }
             }
-        }
-
-        private void RegisterBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Register registerwin = new Register();
-            registerwin.InitializeComponent();
-            registerwin.Show();
-            Close();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -192,10 +180,10 @@ namespace nanoSDK_APIClient.Windows.Auth
             {
                 if (new nanoSDK_APIClient.Theme.CustomMessageBox("Logged In!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
                 {
-                    Main.DashBoardWindow update = new Main.DashBoardWindow();
+                    Main.MainTransitioner update = new Main.MainTransitioner(); // add transitioner window
                     update.InitializeComponent();
                     update.Show();
-                    Close();
+                    ((AuthTransitoner)Window.GetWindow(this)).Close();
                 }
             }
             else
