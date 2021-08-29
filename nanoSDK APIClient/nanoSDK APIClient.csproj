@@ -303,6 +303,9 @@
     <Compile Include="Windows\Auth\RegisterUserControl.xaml.cs">
       <DependentUpon>RegisterUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Main\AccountInformationUserControl.xaml.cs">
+      <DependentUpon>AccountInformationUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Main\DownloadLatestUnitypackgeUserControl.xaml.cs">
       <DependentUpon>DownloadLatestUnitypackgeUserControl.xaml</DependentUpon>
     </Compile>
@@ -369,6 +372,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Auth\RegisterUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Main\AccountInformationUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

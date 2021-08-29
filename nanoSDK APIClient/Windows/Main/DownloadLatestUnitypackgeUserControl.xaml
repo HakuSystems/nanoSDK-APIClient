@@ -59,9 +59,6 @@
                         </StackPanel>
                     </materialDesign:TransitioningContent>
                 </StackPanel>
-                <TextBlock x:Name="dataInformation" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3">
-
-                </TextBlock>
                 <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Vertical" Grid.ColumnSpan="4" Grid.RowSpan="4" VerticalAlignment="Center">
                     <TextBlock x:Name="TitleText" TextWrapping="Wrap" Text="Welcome Username" Foreground="White" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <TextBlock x:Name="summaryText" Margin="10" TextWrapping="Wrap" TextAlignment="Center" Foreground="White" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Top"/>
@@ -75,11 +72,26 @@
                                     </StackPanel>
                                 </RadioButton.Content>
                             </RadioButton>
-
-
-
+                            <RadioButton x:Name="accountBtn" Command="{x:Static materialDesign:Transitioner.MoveNextCommand}" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}" Foreground="White">
+                                <RadioButton.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="AccountBoxOutline" Margin="0,0,5,0" Foreground="White"/>
+                                        <TextBlock Foreground="White" VerticalAlignment="Center" Text="View Account Information"/>
+                                    </StackPanel>
+                                </RadioButton.Content>
+                            </RadioButton>
                         </StackPanel>
                     </materialDesign:TransitioningContent>
+                    <StackPanel Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center">
+                        <RadioButton x:Name="AdminPanelBtn" Visibility="Collapsed" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}" Foreground="White" IsEnabled="False">
+                            <RadioButton.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="DeveloperBoard" Margin="0,0,5,0" Foreground="White"/>
+                                    <TextBlock Foreground="White" VerticalAlignment="Center" Text="AdminPanel (Indev)"/>
+                                </StackPanel>
+                            </RadioButton.Content>
+                        </RadioButton>
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </materialDesign:TransitioningContent>

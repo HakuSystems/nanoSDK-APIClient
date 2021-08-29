@@ -26,6 +26,7 @@ namespace nanoSDK_APIClient.Windows.Main
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            VersionNumberText.Text = $"V{Application.ResourceAssembly.ManifestModule.Assembly.GetName().Version}";
             DragMove();
         }
     }

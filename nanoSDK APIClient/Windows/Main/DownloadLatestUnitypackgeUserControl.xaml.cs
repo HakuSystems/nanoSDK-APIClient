@@ -63,21 +63,18 @@ namespace nanoSDK_APIClient.Windows.Main
         private void Getdata()
         {
             string currentStatus = User.UserVariable;
+            if (currentStatus == "Developer" || currentStatus == "Moderator")
+            {
+                AdminPanelBtn.Visibility = Visibility.Visible;
+            }
             if (currentStatus == null || User.Username == null || User.ID == null || User.Email == null || User.HWID == null)
             {
                 API.Log(User.Username, "Invalid UserInformation");
-                dataInformation.Text = $"LoggedIn as: Null {Environment.NewLine} with ID: Null {Environment.NewLine} E-mail: Null {Environment.NewLine} Status: InValid";
                 Process.GetCurrentProcess().Kill();
-            }
-            else if (currentStatus == null)
-            {
-                dataInformation.Text = $"LoggedIn as: {User.Username} {Environment.NewLine} with ID: {User.ID} {Environment.NewLine} E-mail: {User.Email} {Environment.NewLine} Status: InValid";
-                API.Log(User.Username, "Valid User");
             }
             else
             {
-                API.Log(User.Username, "Valid User");
-                dataInformation.Text = $"LoggedIn as: {User.Username} {Environment.NewLine} with ID: {User.ID} {Environment.NewLine} E-mail: {User.Email} {Environment.NewLine} Status: {User.UserVariable}";
+                API.Log(User.Username, "Valid User"); 
             }
             TitleText.Text = $"Welcome, {User.Username}";
             summaryText.Text = $"This tool is used to download/update nanoSDK.";
