@@ -10,7 +10,6 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace nanoSDK_APIClient.Theme
@@ -64,6 +63,7 @@ namespace nanoSDK_APIClient.Theme
                     btnYes.Visibility = Visibility.Collapsed; btnNo.Visibility = Visibility.Collapsed;
                     break;
             }
+
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)

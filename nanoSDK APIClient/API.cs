@@ -137,11 +137,8 @@ namespace nanoSDK_APIClient
         {
             if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(aid) || string.IsNullOrWhiteSpace(secret) || string.IsNullOrWhiteSpace(version))
             {
-                bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Invalid application information!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                if (Result.Value)
-                {
-                    Process.GetCurrentProcess().Kill();
-                }
+                MessageBox.Show("Invalid application information!", Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                Process.GetCurrentProcess().Kill();
             }
             AID = aid;
             Secret = secret;
@@ -170,27 +167,18 @@ namespace nanoSDK_APIClient
                     }))).Split("|".ToCharArray()));
                     if (Security.MaliciousCheck(response[1]))
                     {
-                        bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Possible malicious activity detected!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                        if (Result.Value)
-                        {
-                            Process.GetCurrentProcess().Kill();
-                        }
+                        MessageBox.Show("Possible malicious activity detected!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Warning);
+                        Process.GetCurrentProcess().Kill();
                     }
                     if (Constants.Breached)
                     {
-                        bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Possible malicious activity detected!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                        if (Result.Value)
-                        {
-                            Process.GetCurrentProcess().Kill();
-                        }
+                        MessageBox.Show("Possible malicious activity detected!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Warning);
+                        Process.GetCurrentProcess().Kill();
                     }
                     if (response[0] != Constants.Token)
                     {
-                        bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Security error has been triggered!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                        if (Result.Value)
-                        {
-                            Process.GetCurrentProcess().Kill();
-                        }
+                        MessageBox.Show("Security error has been triggered!", Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                        Process.GetCurrentProcess().Kill();
                     }
                     switch (response[2])
                     {
@@ -212,16 +200,11 @@ namespace nanoSDK_APIClient
                                 ApplicationSettings.Register = true;
                             if (ApplicationSettings.DeveloperMode)
                             {
-                                if (new nanoSDK_APIClient.Theme.CustomMessageBox("Application is in Developer Mode, bypassing integrity and update check!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
-                                {
-                                }
+                                MessageBox.Show("Application is in Developer Mode, bypassing integrity and update check!", Name, MessageBoxButton.OK, MessageBoxImage.Warning);
                                 File.Create(Environment.CurrentDirectory + "/integrity.log").Close();
                                 string hash = Security.Integrity(Process.GetCurrentProcess().MainModule.FileName);
                                 File.WriteAllText(Environment.CurrentDirectory + "/integrity.log", hash);
-                                bool? Result3 = new nanoSDK_APIClient.Theme.CustomMessageBox("Your applications hash has been saved to integrity.txt, please refer to this when your application is ready for release!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                                if (Result3.Value)
-                                {
-                                }
+                                MessageBox.Show("Your applications hash has been saved to integrity.txt, please refer to this when your application is ready for release!", Name, MessageBoxButton.OK, MessageBoxImage.Information);
                             }
                             else
                             {
@@ -229,44 +212,31 @@ namespace nanoSDK_APIClient
                                 {
                                     if (ApplicationSettings.Hash != Security.Integrity(Process.GetCurrentProcess().MainModule.FileName))
                                     {
-                                        if (new Theme.CustomMessageBox("File has been tampered with, couldn't verify integrity!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
-                                        {
-                                            Process.GetCurrentProcess().Kill();
-                                        }
+                                        MessageBox.Show($"File has been tampered with, couldn't verify integrity!", Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                                        Process.GetCurrentProcess().Kill();
                                     }
                                 }
                                 if (ApplicationSettings.Version != Version)
                                 {
-                                    if (new nanoSDK_APIClient.Theme.CustomMessageBox($"Update {ApplicationSettings.Version} available, redirecting to update!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
-                                    {
-                                        Process.Start(ApplicationSettings.Update_Link);
-                                        Process.GetCurrentProcess().Kill();
-                                    }
+                                    //MessageBox.Show($"Update {ApplicationSettings.Version} available, redirecting to update!", Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                                    //Process.Start(ApplicationSettings.Update_Link);
+                                    //Process.GetCurrentProcess().Kill();
                                 }
 
                             }
                             if (ApplicationSettings.Status == false)
                             {
-                                if (new nanoSDK_APIClient.Theme.CustomMessageBox("Looks like this application is disabled, please try again later!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
-                                {
-                                    Process.GetCurrentProcess().Kill();
-                                }
+                                MessageBox.Show("Looks like this application is disabled, please try again later!", Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                                Process.GetCurrentProcess().Kill();
                             }
                             break;
                         case "binderror":
-                            bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("binderror", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                            if (Result.Value)
-                            {
-                                Process.GetCurrentProcess().Kill();
-                            }
-                            //MessageBox.Show(Encryption.Decode("RmFpbGVkIHRvIGJpbmQgdG8gc2VydmVyLCBjaGVjayB5b3VyIEFJRCAmIFNlY3JldCBpbiB5b3VyIGNvZGUh"), Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(Encryption.Decode("RmFpbGVkIHRvIGJpbmQgdG8gc2VydmVyLCBjaGVjayB5b3VyIEFJRCAmIFNlY3JldCBpbiB5b3VyIGNvZGUh"), Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                            Process.GetCurrentProcess().Kill();
                             return;
                         case "banned":
-                            bool? Result2 = new nanoSDK_APIClient.Theme.CustomMessageBox("This application has been banned for violating the TOS" + Environment.NewLine + "Contact us at support@auth.gg", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                            if (Result2.Value)
-                            {
-                                Process.GetCurrentProcess().Kill();
-                            }
+                            MessageBox.Show("This application has been banned for violating the TOS" + Environment.NewLine + "Contact us at support@auth.gg", Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                            Process.GetCurrentProcess().Kill();
                             return;
                     }
                     Security.End();
@@ -286,19 +256,13 @@ namespace nanoSDK_APIClient
         {
             if (!Constants.Initialized)
             {
-                bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Please initialize your application first!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                if (Result.Value)
-                {
-                    Process.GetCurrentProcess().Kill();
-                }
+                MessageBox.Show("Please initialize your application first!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                Process.GetCurrentProcess().Kill();
             }
             if (string.IsNullOrWhiteSpace(action))
             {
-                bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Missing log information!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                if (Result.Value)
-                {
-                    Process.GetCurrentProcess().Kill();
-                }
+                MessageBox.Show("Missing log information!", ApplicationSettings.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                Process.GetCurrentProcess().Kill();
             }
             string[] response = new string[] { };
             using (WebClient wc = new WebClient())
@@ -352,19 +316,13 @@ namespace nanoSDK_APIClient
         {
             if (!Constants.Initialized)
             {
-                bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Please initialize your application first!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                if (Result.Value)
-                {
-                    Process.GetCurrentProcess().Kill();
-                }
+                MessageBox.Show("Please initialize your application first!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                Process.GetCurrentProcess().Kill();
             }
             if (string.IsNullOrWhiteSpace(AIO))
             {
-                bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Missing user login information!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                if (Result.Value)
-                {
-                    Process.GetCurrentProcess().Kill();
-                }
+                MessageBox.Show("Missing user login information!", ApplicationSettings.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                Process.GetCurrentProcess().Kill();
             }
             string[] response = new string[] { };
             using (WebClient wc = new WebClient())
@@ -391,27 +349,18 @@ namespace nanoSDK_APIClient
                     }))).Split("|".ToCharArray()));
                     if (response[0] != Constants.Token)
                     {
-                        bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Security error has been triggered!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                        if (Result.Value)
-                        {
-                            Process.GetCurrentProcess().Kill();
-                        }
+                        MessageBox.Show("Security error has been triggered!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                        Process.GetCurrentProcess().Kill();
                     }
                     if (Security.MaliciousCheck(response[1]))
                     {
-                        bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Possible malicious activity detected!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                        if (Result.Value)
-                        {
-                            Process.GetCurrentProcess().Kill();
-                        }
+                        MessageBox.Show("Possible malicious activity detected!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Warning);
+                        Process.GetCurrentProcess().Kill();
                     }
                     if (Constants.Breached)
                     {
-                        bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Possible malicious activity detected!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                        if (Result.Value)
-                        {
-                            Process.GetCurrentProcess().Kill();
-                        }
+                        MessageBox.Show("Possible malicious activity detected!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Warning);
+                        Process.GetCurrentProcess().Kill();
                     }
                     switch (response[2])
                     {
@@ -447,37 +396,24 @@ namespace nanoSDK_APIClient
                             Security.End();
                             return false;
                         case "time_expired":
-                            bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Your subscription has expired!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                            if (Result.Value)
-                            {
-                                Security.End();
-                            }
+                            MessageBox.Show("Your subscription has expired!", ApplicationSettings.Name, MessageBoxButton.OK, MessageBoxImage.Warning);
+                            Security.End();
                             return false;
                         case "hwid_updated":
-                            bool? Result2 = new nanoSDK_APIClient.Theme.CustomMessageBox("New machine has been binded, re-open the application!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                            if (Result2.Value)
-                            {
-                                Security.End();
-                                Process.GetCurrentProcess().Kill();
-                            }
+                            MessageBox.Show("New machine has been binded, re-open the application!", ApplicationSettings.Name, MessageBoxButton.OK, MessageBoxImage.Information);
+                            Security.End();
                             return false;
                         case "invalid_hwid":
-                            bool? Result3 = new nanoSDK_APIClient.Theme.CustomMessageBox("This user is binded to another computer, please contact support!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                            if (Result3.Value)
-                            {
-                                Security.End();
-                            }
+                            MessageBox.Show("This user is binded to another computer, please contact support!", ApplicationSettings.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                            Security.End();
                             return false;
                     }
                 }
                 catch (Exception ex)
                 {
-                    bool? Result3 = new nanoSDK_APIClient.Theme.CustomMessageBox(ex.Message, Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                    if (Result3.Value)
-                    {
-                        Security.End();
-                        Process.GetCurrentProcess().Kill();
-                    }
+                    MessageBox.Show(ex.Message, ApplicationSettings.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                    Security.End();
+                    Process.GetCurrentProcess().Kill();
                 }
                 return false;
 
@@ -487,20 +423,14 @@ namespace nanoSDK_APIClient
         {
             if (!Constants.Initialized)
             {
-                bool? Result3 = new nanoSDK_APIClient.Theme.CustomMessageBox("Please initialize your application first!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                if (Result3.Value)
-                {
-                    Security.End();
-                    Process.GetCurrentProcess().Kill();
-                }
+                MessageBox.Show("Please initialize your application first!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                Security.End();
+                Process.GetCurrentProcess().Kill();
             }
             if (string.IsNullOrWhiteSpace(AIO))
             {
-                bool? Result3 = new nanoSDK_APIClient.Theme.CustomMessageBox("Invalid registrar information!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                if (Result3.Value)
-                {
-                    Process.GetCurrentProcess().Kill();
-                }
+                MessageBox.Show("Invalid registrar information!", ApplicationSettings.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                Process.GetCurrentProcess().Kill();
             }
             string[] response = new string[] { };
             using (WebClient wc = new WebClient())
@@ -530,27 +460,19 @@ namespace nanoSDK_APIClient
                     }))).Split("|".ToCharArray());
                     if (response[0] != Constants.Token)
                     {
-                        bool? Result3 = new nanoSDK_APIClient.Theme.CustomMessageBox("Security error has been triggered!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                        if (Result3.Value)
-                        {
-                            Process.GetCurrentProcess().Kill();
-                        }
+                        MessageBox.Show("Security error has been triggered!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                        Security.End();
+                        Process.GetCurrentProcess().Kill();
                     }
                     if (Security.MaliciousCheck(response[1]))
                     {
-                        bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Possible malicious activity detected!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                        if (Result.Value)
-                        {
-                            Process.GetCurrentProcess().Kill();
-                        }
+                        MessageBox.Show("Possible malicious activity detected!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Warning);
+                        Process.GetCurrentProcess().Kill();
                     }
                     if (Constants.Breached)
                     {
-                        bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Possible malicious activity detected!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                        if (Result.Value)
-                        {
-                            Process.GetCurrentProcess().Kill();
-                        }
+                        MessageBox.Show("Possible malicious activity detected!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Warning);
+                        Process.GetCurrentProcess().Kill();
                     }
                     Security.End();
                     switch (response[2])
@@ -564,11 +486,8 @@ namespace nanoSDK_APIClient
                 }
                 catch (Exception ex)
                 {
-                    bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox(ex.Message, Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                    if (Result.Value)
-                    {
-                        Process.GetCurrentProcess().Kill();
-                    }
+                    MessageBox.Show(ex.Message, ApplicationSettings.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                    Process.GetCurrentProcess().Kill();
                 }
                 return false;
             }
@@ -577,19 +496,13 @@ namespace nanoSDK_APIClient
         {
             if (!Constants.Initialized)
             {
-                bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Please initialize your application first!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                if (Result.Value)
-                {
-                    Process.GetCurrentProcess().Kill();
-                }
+                MessageBox.Show("Please initialize your application first!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                Process.GetCurrentProcess().Kill();
             }
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
-                bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Missing user login information!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                if (Result.Value)
-                {
-                    Process.GetCurrentProcess().Kill();
-                }
+                MessageBox.Show("Missing user login information!", ApplicationSettings.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                Process.GetCurrentProcess().Kill();
             }
             string[] response = new string[] { };
             using (WebClient wc = new WebClient())
@@ -616,27 +529,18 @@ namespace nanoSDK_APIClient
                     }))).Split("|".ToCharArray()));
                     if (response[0] != Constants.Token)
                     {
-                        bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Security error has been triggered!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                        if (Result.Value)
-                        {
-                            Process.GetCurrentProcess().Kill();
-                        }
+                        MessageBox.Show("Security error has been triggered!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                        Process.GetCurrentProcess().Kill();
                     }
                     if (Security.MaliciousCheck(response[1]))
                     {
-                        bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Possible malicious activity detected!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                        if (Result.Value)
-                        {
-                            Process.GetCurrentProcess().Kill();
-                        }
+                        MessageBox.Show("Possible malicious activity detected!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Warning);
+                        Process.GetCurrentProcess().Kill();
                     }
                     if (Constants.Breached)
                     {
-                        bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Possible malicious activity detected!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                        if (Result.Value)
-                        {
-                            Process.GetCurrentProcess().Kill();
-                        }
+                        MessageBox.Show("Possible malicious activity detected!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Warning);
+                        Process.GetCurrentProcess().Kill();
                     }
                     switch (response[2])
                     {
@@ -669,43 +573,28 @@ namespace nanoSDK_APIClient
                             Security.End();
                             return true;
                         case "invalid_details":
-                            bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Sorry, your username/password does not match!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                            if (Result.Value)
-                            {
-                                Security.End();
-                            }
+                            MessageBox.Show("Sorry, your username/password does not match!", ApplicationSettings.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                            Security.End();
                             return false;
                         case "time_expired":
-                            bool? Result2 = new nanoSDK_APIClient.Theme.CustomMessageBox("Your subscription has expired!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                            if (Result2.Value)
-                            {
-                                Security.End();
-                            }
+                            MessageBox.Show("Your subscription has expired!", ApplicationSettings.Name, MessageBoxButton.OK, MessageBoxImage.Warning);
+                            Security.End();
                             return false;
                         case "hwid_updated":
-                            bool? Result3 = new nanoSDK_APIClient.Theme.CustomMessageBox("New machine has been binded, re-open the application!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                            if (Result3.Value)
-                            {
-                                Security.End();
-                            }
+                            MessageBox.Show("New machine has been binded, re-open the application!", ApplicationSettings.Name, MessageBoxButton.OK, MessageBoxImage.Information);
+                            Security.End();
                             return false;
                         case "invalid_hwid":
-                            bool? Result4 = new nanoSDK_APIClient.Theme.CustomMessageBox("This user is binded to another computer, please contact support!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                            if (Result4.Value)
-                            {
-                                Security.End();
-                            }
+                            MessageBox.Show("This user is binded to another computer, please contact support!", ApplicationSettings.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                            Security.End();
                             return false;
                     }
                 }
                 catch (Exception ex)
                 {
-                    bool? Result4 = new nanoSDK_APIClient.Theme.CustomMessageBox(ex.Message, Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                    if (Result4.Value)
-                    {
-                        Security.End();
-                        Process.GetCurrentProcess().Kill();
-                    }
+                    MessageBox.Show(ex.Message, ApplicationSettings.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                    Security.End();
+                    Process.GetCurrentProcess().Kill();
                 }
                 return false;
 
@@ -715,20 +604,14 @@ namespace nanoSDK_APIClient
         {
             if (!Constants.Initialized)
             {
-                bool? Result4 = new nanoSDK_APIClient.Theme.CustomMessageBox("Please initialize your application first!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                if (Result4.Value)
-                {
-                    Security.End();
-                    Process.GetCurrentProcess().Kill();
-                }
+                MessageBox.Show("Please initialize your application first!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                Security.End();
+                Process.GetCurrentProcess().Kill();
             }
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(license))
             {
-                bool? Result4 = new nanoSDK_APIClient.Theme.CustomMessageBox("Invalid registrar information!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                if (Result4.Value)
-                {
-                    Process.GetCurrentProcess().Kill();
-                }
+                MessageBox.Show("Invalid registrar information!", ApplicationSettings.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                Process.GetCurrentProcess().Kill();
             }
             string[] response = new string[] { };
             using (WebClient wc = new WebClient())
@@ -758,28 +641,19 @@ namespace nanoSDK_APIClient
                     }))).Split("|".ToCharArray());
                     if (response[0] != Constants.Token)
                     {
-                        bool? Result4 = new nanoSDK_APIClient.Theme.CustomMessageBox("Security error has been triggered!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                        if (Result4.Value)
-                        {
-                            Security.End();
-                            Process.GetCurrentProcess().Kill();
-                        }
+                        MessageBox.Show("Security error has been triggered!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                        Security.End();
+                        Process.GetCurrentProcess().Kill();
                     }
                     if (Security.MaliciousCheck(response[1]))
                     {
-                        bool? Result4 = new nanoSDK_APIClient.Theme.CustomMessageBox("Possible malicious activity detected!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                        if (Result4.Value)
-                        {
-                            Process.GetCurrentProcess().Kill();
-                        }
+                        MessageBox.Show("Possible malicious activity detected!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Warning);
+                        Process.GetCurrentProcess().Kill();
                     }
                     if (Constants.Breached)
                     {
-                        bool? Result4 = new nanoSDK_APIClient.Theme.CustomMessageBox("Possible malicious activity detected!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                        if (Result4.Value)
-                        {
-                            Process.GetCurrentProcess().Kill();
-                        }
+                        MessageBox.Show("Possible malicious activity detected!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Warning);
+                        Process.GetCurrentProcess().Kill();
                     }
                     switch (response[2])
                     {
@@ -787,25 +661,16 @@ namespace nanoSDK_APIClient
                             Security.End();
                             return true;
                         case "invalid_license":
-                            bool? Result4 = new nanoSDK_APIClient.Theme.CustomMessageBox("License does not exist!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                            if (Result4.Value)
-                            {
-                                Security.End();
-                            }
+                            MessageBox.Show("License does not exist!", ApplicationSettings.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                            Security.End();
                             return false;
                         case "email_used":
-                            bool? Result1 = new nanoSDK_APIClient.Theme.CustomMessageBox("Email has already been used!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                            if (Result1.Value)
-                            {
-                                Security.End();
-                            }
+                            MessageBox.Show("Email has already been used!", ApplicationSettings.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                            Security.End();
                             return false;
                         case "invalid_username":
-                            bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("You entered an invalid/used username!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                            if (Result.Value)
-                            {
-                                Security.End();
-                            }
+                            MessageBox.Show("You entered an invalid/used username!", ApplicationSettings.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                            Security.End();
                             return false;
                     }
                 }
@@ -821,20 +686,14 @@ namespace nanoSDK_APIClient
         {
             if (!Constants.Initialized)
             {
-                bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Please initialize your application first!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                if (Result.Value)
-                {
-                    Security.End();
-                    Process.GetCurrentProcess().Kill();
-                }
+                MessageBox.Show("Please initialize your application first!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                Security.End();
+                Process.GetCurrentProcess().Kill();
             }
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(license))
             {
-                bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Invalid registrar information!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                if (Result.Value)
-                {
-                    Process.GetCurrentProcess().Kill();
-                }
+                MessageBox.Show("Invalid registrar information!", ApplicationSettings.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                Process.GetCurrentProcess().Kill();
             }
             string[] response = new string[] { };
             using (WebClient wc = new WebClient())
@@ -861,28 +720,19 @@ namespace nanoSDK_APIClient
                     }))).Split("|".ToCharArray());
                     if (response[0] != Constants.Token)
                     {
-                        bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Security error has been triggered!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                        if (Result.Value)
-                        {
-                            Security.End();
-                            Process.GetCurrentProcess().Kill();
-                        }
+                        MessageBox.Show("Security error has been triggered!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                        Security.End();
+                        Process.GetCurrentProcess().Kill();
                     }
                     if (Security.MaliciousCheck(response[1]))
                     {
-                        bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Possible malicious activity detected!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                        if (Result.Value)
-                        {
-                            Process.GetCurrentProcess().Kill();
-                        }
+                        MessageBox.Show("Possible malicious activity detected!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Warning);
+                        Process.GetCurrentProcess().Kill();
                     }
                     if (Constants.Breached)
                     {
-                        bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Possible malicious activity detected!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                        if (Result.Value)
-                        {
-                            Process.GetCurrentProcess().Kill();
-                        }
+                        MessageBox.Show("Possible malicious activity detected!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Warning);
+                        Process.GetCurrentProcess().Kill();
                     }
                     switch (response[2])
                     {
@@ -890,28 +740,19 @@ namespace nanoSDK_APIClient
                             Security.End();
                             return true;
                         case "invalid_token":
-                            bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("Token does not exist!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                            if (Result.Value)
-                            {
-                                Security.End();
-                            }
+                            MessageBox.Show("Token does not exist!", ApplicationSettings.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                            Security.End();
                             return false;
                         case "invalid_details":
-                            bool? Result2 = new nanoSDK_APIClient.Theme.CustomMessageBox("Your user details are invalid!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                            if (Result2.Value)
-                            {
-                                Security.End();
-                            }
+                            MessageBox.Show("Your user details are invalid!", ApplicationSettings.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                            Security.End();
                             return false;
                     }
                 }
                 catch (Exception ex)
                 {
-                    bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox(ex.Message, Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                    if (Result.Value)
-                    {
-                        Process.GetCurrentProcess().Kill();
-                    }
+                    MessageBox.Show(ex.Message, ApplicationSettings.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                    Process.GetCurrentProcess().Kill();
                 }
                 return false;
             }
@@ -947,11 +788,8 @@ namespace nanoSDK_APIClient
             string drive = Path.GetPathRoot(Environment.SystemDirectory);
             if (Constants.Started)
             {
-                bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("A session has already been started, please end the previous one!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                if (Result.Value)
-                {
-                    Process.GetCurrentProcess().Kill();
-                }
+                MessageBox.Show("A session has already been started, please end the previous one!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Warning);
+                Process.GetCurrentProcess().Kill();
             }
             else
             {
@@ -961,11 +799,8 @@ namespace nanoSDK_APIClient
                     if (contents.Contains("api.auth.gg"))
                     {
                         Constants.Breached = true;
-                        bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("DNS redirecting has been detected!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                        if (Result.Value)
-                        {
-                            Process.GetCurrentProcess().Kill();
-                        }
+                        MessageBox.Show("DNS redirecting has been detected!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                        Process.GetCurrentProcess().Kill();
                     }
                 }
                 InfoManager infoManager = new InfoManager();
@@ -983,11 +818,8 @@ namespace nanoSDK_APIClient
         {
             if (!Constants.Started)
             {
-                bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("No session has been started, closing for security reasons!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                if (Result.Value)
-                {
-                    Process.GetCurrentProcess().Kill();
-                }
+                MessageBox.Show("No session has been started, closing for security reasons!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Warning);
+                Process.GetCurrentProcess().Kill();
             }
             else
             {
@@ -1149,11 +981,8 @@ namespace nanoSDK_APIClient
             if (!(GetGatewayMAC() == lastGateway))
             {
                 Constants.Breached = true;
-                bool? Result = new nanoSDK_APIClient.Theme.CustomMessageBox("ARP Cache poisoning has been detected!", Theme.CustomMessageBox.MessageType.API, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog();
-                if (Result.Value)
-                {
-                    Process.GetCurrentProcess().Kill();
-                }
+                MessageBox.Show("ARP Cache poisoning has been detected!", OnProgramStart.Name, MessageBoxButton.OK, MessageBoxImage.Error);
+                Process.GetCurrentProcess().Kill();
             }
             else
             {
