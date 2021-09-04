@@ -86,7 +86,17 @@ namespace nanoSDK_APIClient.Windows.AdminPanel
 
         private void refeshButton_Click(object sender, RoutedEventArgs e)
         {
+            LoadApp();
+        }
 
+        private void adminInfoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentFrame.Source = new Uri("HomeUserControl.xaml", UriKind.Relative);
+        }
+
+        private void adminUserBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentFrame.Source = new Uri("UsersUserControl.xaml", UriKind.Relative);
         }
     }
 }

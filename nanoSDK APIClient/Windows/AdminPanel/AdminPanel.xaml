@@ -78,7 +78,7 @@
                 </materialDesign:TransitioningContent>
             </StackPanel>
             <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" Grid.RowSpan="7" Grid.ColumnSpan="2">
-                <RadioButton x:Name="adminInfoBtn" Margin="5" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
+                <RadioButton Click="adminInfoBtn_Click" x:Name="adminInfoBtn" Margin="5" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Margin="5" Kind="InformationOutline"/>
@@ -86,7 +86,7 @@
                         </StackPanel>
                     </RadioButton.Content>
                 </RadioButton>
-                <RadioButton x:Name="adminUserBtn" Margin="5" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
+                <RadioButton Click="adminUserBtn_Click" x:Name="adminUserBtn" Margin="5" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
 
@@ -141,6 +141,9 @@
                     </RadioButton.Content>
                 </RadioButton>
             </StackPanel>
+            <Grid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="6" Grid.RowSpan="8" Margin="5">
+                <Frame x:Name="CurrentFrame" NavigationUIVisibility="Hidden" Source="HomeUserControl.xaml" />
+            </Grid>
         </Grid>
     </Grid>
 </Window>
