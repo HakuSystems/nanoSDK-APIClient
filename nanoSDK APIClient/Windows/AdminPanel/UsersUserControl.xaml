@@ -46,7 +46,7 @@
                     <StackPanel>
                         <ComboBox materialDesign:HintAssist.Hint="Select Username" SelectionChanged="UsersDataGrid_SelectionChanged" Margin="5" x:Name="UsersDataGrid"  Width="auto">
                         </ComboBox>
-                        <materialDesign:Card Margin="5">
+                        <materialDesign:Card Margin="5" x:Name="ActionCard">
                             <StackPanel>
                                 <TextBlock Text="Options:" Margin="5"/>
                                 <StackPanel Margin="5" Orientation="Vertical">

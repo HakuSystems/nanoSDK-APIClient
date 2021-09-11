@@ -270,10 +270,10 @@ namespace nanoSDK_APIClient.Windows.AdminPanel
             return result;
         }
 
-        public static dynamic Generatelicense(string ammount, string length, string prefix, string level, string days, string format, string authkey)
+        public static dynamic Generatelicense(string days, string ammount, string level, string length, string format, string prefix, string authkey)
         {
             WebClient webClient = new WebClient();
-            string jsonresponse = webClient.DownloadString($"https://developers.auth.gg/LICENSES/?type=generate&amount={ammount}&length={length}&prefix={prefix}&level={level}&days={days}&format={format}&authorization={authkey}");
+            string jsonresponse = webClient.DownloadString($"https://developers.auth.gg/LICENSES/?type=generate&days={days}&amount={ammount}&level={level}&length={length}&format={format}&prefix={prefix}&authorization={authkey}");
             dynamic jsonconvert = JsonConvert.DeserializeObject(jsonresponse);
             return jsonconvert;
         }

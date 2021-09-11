@@ -23,7 +23,6 @@ namespace nanoSDK_APIClient.Windows.AdminPanel
     /// </summary>
     public partial class UsersUserControl : UserControl
     {
-        private string dataoneselected { get; set; }
 
         public UsersUserControl()
         {
@@ -33,24 +32,19 @@ namespace nanoSDK_APIClient.Windows.AdminPanel
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             doBtnCheckings();
+            setEverythingToZero();
             Getallusersdataview();
         }
         private void doBtnCheckings()
         {
             ((AdminPanel)Window.GetWindow(this)).adminInfoBtn.IsChecked = false;
             ((AdminPanel)Window.GetWindow(this)).adminUserBtn.IsChecked = true;
+            ((AdminPanel)Window.GetWindow(this)).createLicenseBtn.IsChecked = false;
         }
 
         private void refreshBtn_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Getallusersdataview();
-            }
-            catch (NullReferenceException)
-            {
-                setEverythingToZero();
-            }
+            Getallusersdataview();
         }
 
         public class Root
@@ -122,6 +116,7 @@ namespace nanoSDK_APIClient.Windows.AdminPanel
                 }
                 else
                 {
+                    ActionCard.IsEnabled = true;
                     UsernameOutput.Text = UsersDataGrid.SelectedItem.ToString();
                 }
             }
@@ -134,6 +129,7 @@ namespace nanoSDK_APIClient.Windows.AdminPanel
 
         private void setEverythingToZero()
         {
+            ActionCard.IsEnabled = false;
             UsernameOutput.Text = "null";
             PassBoxChangePassBox.Password = null;
             VariableChangerTxtBox.Text = null;

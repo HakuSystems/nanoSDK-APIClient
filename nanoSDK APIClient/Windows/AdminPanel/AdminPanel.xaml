@@ -89,43 +89,23 @@
                 <RadioButton Click="adminUserBtn_Click" x:Name="adminUserBtn" Margin="5" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
-
                             <materialDesign:PackIcon Margin="5" Kind="UsersOutline"/>
                             <TextBlock Margin="5" Text="Users" VerticalAlignment="Center"/>
                         </StackPanel>
                     </RadioButton.Content>
                 </RadioButton>
+
                 <RadioButton Margin="5" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
-
-                            <materialDesign:PackIcon Margin="5" Kind="UserAlertOutline"/>
-                            <TextBlock Margin="5" Text="User Management" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </RadioButton.Content>
-                </RadioButton>
-                <RadioButton Margin="5" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
-                    <RadioButton.Content>
-                        <StackPanel Orientation="Horizontal">
-
                             <materialDesign:PackIcon Margin="5" Kind="KeyChain"/>
-                            <TextBlock Margin="5" Text="Licenses" VerticalAlignment="Center"/>
+                            <TextBlock Margin="5" Text="Licenses (indev)" VerticalAlignment="Center"/>
                         </StackPanel>
                     </RadioButton.Content>
                 </RadioButton>
-                <RadioButton Margin="5" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
+                <RadioButton x:Name="createLicenseBtn" Click="createLicenseBtn_Click" Margin="5" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
-
-                            <materialDesign:PackIcon Margin="5" Kind="KeyOutline"/>
-                            <TextBlock Margin="5" Text="License Editor" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </RadioButton.Content>
-                </RadioButton>
-                <RadioButton Margin="5" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
-                    <RadioButton.Content>
-                        <StackPanel Orientation="Horizontal">
-
                             <materialDesign:PackIcon Margin="5" Kind="CreateOutline"/>
                             <TextBlock Margin="5" Text="Create License" VerticalAlignment="Center"/>
                         </StackPanel>
@@ -134,7 +114,6 @@
                 <RadioButton Margin="5" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
-
                             <materialDesign:PackIcon Margin="5" Kind="ReadMoreOutline"/>
                             <TextBlock Margin="5" Text="Others" VerticalAlignment="Center"/>
                         </StackPanel>
@@ -142,7 +121,7 @@
                 </RadioButton>
             </StackPanel>
             <Grid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="6" Grid.RowSpan="8" Margin="5">
-                <Frame x:Name="CurrentFrame" NavigationUIVisibility="Hidden" Source="HomeUserControl.xaml" />
+                <Frame x:Name="CurrentFrame" ScrollViewer.CanContentScroll="True" NavigationUIVisibility="Hidden" Source="HomeUserControl.xaml" />
             </Grid>
         </Grid>
     </Grid>
