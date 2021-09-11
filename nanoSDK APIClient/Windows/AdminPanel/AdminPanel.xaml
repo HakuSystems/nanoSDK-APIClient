@@ -59,7 +59,7 @@
                         <ToggleButton x:Name="ThemeBtn" IsChecked="True" Checked="ThemeBtn_Checked" Unchecked="ThemeBtn_Unchecked" Style="{DynamicResource MaterialDesignToolButton}" Foreground="White" Height="30" Margin="5,0,0,0">
                             <materialDesign:PackIcon Kind="ThemeLightDark"/>
                         </ToggleButton>
-                        <Button x:Name="refeshButton" Click="refeshButton_Click" Style="{DynamicResource MaterialDesignFloatingActionButton}" Height="30" Width="30" Foreground="White" Margin="450,0,0,0">
+                        <Button x:Name="refeshButton" Click="refeshButton_Click" ToolTip="Reload-App" Style="{DynamicResource MaterialDesignFloatingActionButton}" Height="30" Width="30" Foreground="White" Margin="450,0,0,0">
                             <Button.Content>
                                 <materialDesign:PackIcon Kind="Refresh"/>
                             </Button.Content>
@@ -94,15 +94,6 @@
                         </StackPanel>
                     </RadioButton.Content>
                 </RadioButton>
-
-                <RadioButton Margin="5" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
-                    <RadioButton.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Margin="5" Kind="KeyChain"/>
-                            <TextBlock Margin="5" Text="Licenses (indev)" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </RadioButton.Content>
-                </RadioButton>
                 <RadioButton x:Name="createLicenseBtn" Click="createLicenseBtn_Click" Margin="5" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
@@ -111,7 +102,7 @@
                         </StackPanel>
                     </RadioButton.Content>
                 </RadioButton>
-                <RadioButton Margin="5" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
+                <RadioButton x:Name="OthersBtn" Click="OthersBtn_Click" Margin="5" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Margin="5" Kind="ReadMoreOutline"/>

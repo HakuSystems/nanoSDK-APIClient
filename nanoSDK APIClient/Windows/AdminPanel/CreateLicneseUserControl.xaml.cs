@@ -39,6 +39,7 @@ namespace nanoSDK_APIClient.Windows.AdminPanel
             ((AdminPanel)Window.GetWindow(this)).adminInfoBtn.IsChecked = false;
             ((AdminPanel)Window.GetWindow(this)).adminUserBtn.IsChecked = false;
             ((AdminPanel)Window.GetWindow(this)).createLicenseBtn.IsChecked = true;
+            ((AdminPanel)Window.GetWindow(this)).OthersBtn.IsChecked = false;
         }
 
         private string days { get; set; }
@@ -64,7 +65,7 @@ namespace nanoSDK_APIClient.Windows.AdminPanel
 
                 var obje = AuthAPI.Generatelicense(dayscount, ammount, level, length, format.ToString(), prefix, Constants.ApplicationAuthKey);
                 string status = obje.ToString();
-                var obj1 = JsonConvert.DeserializeObject<dynamic>(status);
+                var convertData = JsonConvert.DeserializeObject<dynamic>(status);
                 DISPLAYTEXT.Content = status;
                 List<int> licenses = new List<int>();
 
@@ -73,11 +74,11 @@ namespace nanoSDK_APIClient.Windows.AdminPanel
 
                 foreach (var id in licenses)
                 {
-                    string[] gridData = new string[] { id.ToString(), obj1[id.ToString()] };
+                    string[] gridData = new string[] { id.ToString(), convertData[id.ToString()] };
                     dataGridLicense.Items.Add(gridData[1]);
                 }
             }
-            catch{}
+            catch { }
         }
 
         private void dataGridLicense_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -86,10 +87,12 @@ namespace nanoSDK_APIClient.Windows.AdminPanel
             {
                 if (dataGridLicense.SelectedItem == null)
                 {
-
+                    CopyPrefabCompletedBtn.IsEnabled = false;
+                    SelcetedLicense.Text = "Currently No License Selected.";
                 }
                 else
                 {
+                    CopyPrefabCompletedBtn.IsEnabled = true;
                     SelcetedLicense.Text = dataGridLicense.SelectedItem.ToString();
                     Clipboard.SetText(SelcetedLicense.Text);
 
@@ -101,5 +104,21 @@ namespace nanoSDK_APIClient.Windows.AdminPanel
             }
         }
 
+        private void CopyPrefabCompletedBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string prefabContent = $@"```                == License ==
+          nanoSDK License Completed
+
+ Congratulation getting your nanoSDK license 
+  License key:[{SelcetedLicense.Text}]
+            License key duration:[Lifetime]
+ 
+Note: The license key is only for 1 account
+
+[nanoSDK development team]
+            ```";
+
+            Clipboard.SetText(prefabContent);
+        }
     }
 }

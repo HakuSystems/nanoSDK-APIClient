@@ -104,5 +104,10 @@ namespace nanoSDK_APIClient.Windows.AdminPanel
         {
             CurrentFrame.Source = new Uri("CreateLicneseUserControl.xaml", UriKind.Relative);
         }
+
+        private void OthersBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentFrame.Source = new Uri("OthersUserControl.xaml", UriKind.Relative);
+        }
     }
 }

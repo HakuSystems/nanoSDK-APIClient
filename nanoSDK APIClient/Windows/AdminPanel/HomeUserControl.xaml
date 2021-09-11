@@ -44,9 +44,9 @@
 
                 <StackPanel Grid.Row="2" Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <StackPanel>
-                        <materialDesign:Card Margin="5" UniformCornerRadius="10" Width="420">
+                        <materialDesign:Card UniformCornerRadius="10" Width="420">
                             <StackPanel>
-                                <Label x:Name="licenseCount" Content="Total Licenses: "/>
+                                <Label x:Name="licenseCount" HorizontalAlignment="Left" Content="Total Licenses: "/>
                                 <TextBlock x:Name="InforTextBlog" HorizontalAlignment="Left"/>
                             </StackPanel>
                         </materialDesign:Card>
