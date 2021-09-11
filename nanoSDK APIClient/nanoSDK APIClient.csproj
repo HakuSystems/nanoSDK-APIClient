@@ -316,6 +316,9 @@
     <Compile Include="Windows\AdminPanel\AdminPanel.xaml.cs">
       <DependentUpon>AdminPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\AdminPanel\CreateLicneseUserControl.xaml.cs">
+      <DependentUpon>CreateLicneseUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AdminPanel\HomeUserControl.xaml.cs">
       <DependentUpon>HomeUserControl.xaml</DependentUpon>
     </Compile>
@@ -386,6 +389,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AdminPanel\AdminPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AdminPanel\CreateLicneseUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

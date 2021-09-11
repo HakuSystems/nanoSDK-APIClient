@@ -42,15 +42,58 @@
                     <RowDefinition Height="20"/>
                 </Grid.RowDefinitions>
 
-                <StackPanel Grid.Row="2" Grid.Column="2" Grid.RowSpan="4" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="6" Grid.RowSpan="6">
                     <StackPanel>
-                        <materialDesign:Card Margin="5" UniformCornerRadius="10" Width="420">
+                        <ComboBox materialDesign:HintAssist.Hint="Select Username" SelectionChanged="UsersDataGrid_SelectionChanged" Margin="5" x:Name="UsersDataGrid"  Width="auto">
+                        </ComboBox>
+                        <materialDesign:Card Margin="5" x:Name="ActionCard">
                             <StackPanel>
-                                <Label Content="USERS"/>
+                                <TextBlock Text="Options:" Margin="5"/>
+                                <StackPanel Margin="5" Orientation="Vertical">
+                                    <TextBlock Text="null" x:Name="UsernameOutput" FontSize="20" Margin="10"/>
+                                    <PasswordBox materialDesign:HintAssist.Hint="New Password" x:Name="PassBoxChangePassBox" Margin="5"/>
+                                    <TextBox materialDesign:HintAssist.Hint="New Variable" x:Name="VariableChangerTxtBox" Margin="5">
+                                    </TextBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <RadioButton x:Name="changePassBtn" Click="changePassBtn_Click" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
+                                        <RadioButton.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="FormTextboxPassword"/>
+                                                <TextBlock Text="Change Passowrd" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </RadioButton.Content>
+                                    </RadioButton>
+                                    <RadioButton x:Name="changeVarbtn" Click="changeVarbtn_Click" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
+                                        <RadioButton.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="Variable"/>
+                                                <TextBlock Text="Change Variable" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </RadioButton.Content>
+                                    </RadioButton>
+                                    <RadioButton x:Name="resetHWIDBtn" Click="resetHWIDBtn_Click" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
+                                        <RadioButton.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="EncryptionReset"/>
+                                                <TextBlock Text="Reset HWID" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </RadioButton.Content>
+                                    </RadioButton>
+                                    <RadioButton x:Name="deleteUserBtn" Click="deleteUserBtn_Click" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}">
+                                        <RadioButton.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <materialDesign:PackIcon Kind="TrashCanOutline"/>
+                                                <TextBlock Text="Delete User" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </RadioButton.Content>
+                                    </RadioButton>
+                                </StackPanel>
                             </StackPanel>
                         </materialDesign:Card>
+                        <RadioButton x:Name="refreshBtn" Click="refreshBtn_Click" Content="Refresh" Style="{DynamicResource MaterialDesignChoiceChipOutlineRadioButton}"/>
                     </StackPanel>
-                </StackPanel>
+                </Grid>
 
             </Grid>
         </materialDesign:TransitioningContent>

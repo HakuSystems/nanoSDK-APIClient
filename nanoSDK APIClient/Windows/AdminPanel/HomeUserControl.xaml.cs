@@ -46,6 +46,7 @@ namespace nanoSDK_APIClient.Windows.AdminPanel
         {
             ((AdminPanel)Window.GetWindow(this)).adminInfoBtn.IsChecked = true;
             ((AdminPanel)Window.GetWindow(this)).adminUserBtn.IsChecked = false;
+            ((AdminPanel)Window.GetWindow(this)).createLicenseBtn.IsChecked = false;
         }
     }
 }
