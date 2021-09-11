@@ -62,18 +62,15 @@
                                         </RadioButton.Content>
                                     </RadioButton>
                                 </StackPanel>
+                                <StackPanel Margin="5">
+                                    <TextBlock x:Name="SelcetedLicense" Text="Currently No License Selected." FontSize="20" TextWrapping="Wrap" Margin="5"/>
+                                    <ComboBox materialDesign:HintAssist.Hint="Click To Copy License" SelectionChanged="dataGridLicense_SelectionChanged" x:Name="dataGridLicense">
+                                    </ComboBox>
+                                    <RadioButton Style="{DynamicResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}" IsEnabled="False" Click="CopyPrefabCompletedBtn_Click" x:Name="CopyPrefabCompletedBtn" ToolTip="# Congratulation getting your nanoSDK license...." Foreground="White" Margin="10" Content="Copy nanoSDK License Completed Prefab"/>
+                                </StackPanel>
                             </StackPanel>
+                            
                         </materialDesign:Card>
-                        <materialDesign:Card Margin="5">
-                            <StackPanel>
-                                <TextBlock x:Name="SelcetedLicense" Text="Currently No License Selected." FontSize="20" Margin="5"/>
-                                <ComboBox materialDesign:HintAssist.HelperText="Click To Copy License" SelectionChanged="dataGridLicense_SelectionChanged" x:Name="dataGridLicense">
-                                </ComboBox>
-
-                            </StackPanel>
-                        </materialDesign:Card>
-
-
                     </StackPanel>
                 </Grid>
 

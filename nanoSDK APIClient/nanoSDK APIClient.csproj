@@ -322,6 +322,9 @@
     <Compile Include="Windows\AdminPanel\HomeUserControl.xaml.cs">
       <DependentUpon>HomeUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\AdminPanel\OthersUserControl.xaml.cs">
+      <DependentUpon>OthersUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AdminPanel\UsersUserControl.xaml.cs">
       <DependentUpon>UsersUserControl.xaml</DependentUpon>
     </Compile>
@@ -397,6 +400,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AdminPanel\HomeUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AdminPanel\OthersUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

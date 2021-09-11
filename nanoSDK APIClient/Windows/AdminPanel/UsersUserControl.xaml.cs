@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using nanoSDK_APIClient.Theme;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,7 @@ namespace nanoSDK_APIClient.Windows.AdminPanel
             ((AdminPanel)Window.GetWindow(this)).adminInfoBtn.IsChecked = false;
             ((AdminPanel)Window.GetWindow(this)).adminUserBtn.IsChecked = true;
             ((AdminPanel)Window.GetWindow(this)).createLicenseBtn.IsChecked = false;
+            ((AdminPanel)Window.GetWindow(this)).OthersBtn.IsChecked = false;
         }
 
         private void refreshBtn_Click(object sender, RoutedEventArgs e)
@@ -138,12 +140,30 @@ namespace nanoSDK_APIClient.Windows.AdminPanel
 
         private void changeVarbtn_Click(object sender, RoutedEventArgs e)
         {
-            AuthAPI.Changevariable(Constants.ApplicationAuthKey, UsernameOutput.Text, VariableChangerTxtBox.Text);
+            if (VariableChangerTxtBox.Text == null)
+            {
+                if (new CustomMessageBox("Variable cant be NULL", CustomMessageBox.MessageType.API, CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
+                {
+                }
+            }
+            else
+            {
+                AuthAPI.Changevariable(Constants.ApplicationAuthKey, UsernameOutput.Text, VariableChangerTxtBox.Text);
+            }
         }
 
         private void changePassBtn_Click(object sender, RoutedEventArgs e)
         {
-            AuthAPI.Changepassword(Constants.ApplicationAuthKey, UsernameOutput.Text, PassBoxChangePassBox.Password);
+            if (PassBoxChangePassBox.Password == null)
+            {
+                if (new CustomMessageBox("Password cant be NULL", CustomMessageBox.MessageType.API, CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
+                {
+                }
+            }
+            else
+            {
+                AuthAPI.Changepassword(Constants.ApplicationAuthKey, UsernameOutput.Text, PassBoxChangePassBox.Password);
+            }
         }
 
         private void resetHWIDBtn_Click(object sender, RoutedEventArgs e)
