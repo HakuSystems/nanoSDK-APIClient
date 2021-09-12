@@ -313,23 +313,6 @@
     <Compile Include="Theme\CustomMessageBox.xaml.cs">
       <DependentUpon>CustomMessageBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\AdminPanel\AdminPanel.xaml.cs">
-      <DependentUpon>AdminPanel.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\AdminPanel\CreateLicneseUserControl.xaml.cs">
-      <DependentUpon>CreateLicneseUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\AdminPanel\HomeUserControl.xaml.cs">
-      <DependentUpon>HomeUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\AdminPanel\OthersUserControl.xaml.cs">
-      <DependentUpon>OthersUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\AdminPanel\UsersUserControl.xaml.cs">
-      <DependentUpon>UsersUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\AdminPanel\Utilities\AuthAPI.cs" />
-    <Compile Include="Windows\AdminPanel\Utilities\Constants.cs" />
     <Compile Include="Windows\Auth\AuthTransitoner.xaml.cs">
       <DependentUpon>AuthTransitoner.xaml</DependentUpon>
     </Compile>
@@ -388,26 +371,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Theme\CustomMessageBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\AdminPanel\AdminPanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\AdminPanel\CreateLicneseUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\AdminPanel\HomeUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\AdminPanel\OthersUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\AdminPanel\UsersUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

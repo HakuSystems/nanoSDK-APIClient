@@ -77,14 +77,25 @@ namespace nanoSDK_APIClient.Windows.Main
 
         private async void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            if (new Theme.CustomMessageBox("Updating Complete", Theme.CustomMessageBox.MessageType.Info, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
+            if (e.Error == null)
             {
-                Process.Start(desktopPath + AppExecutablePath + downloadedapplicationName);
-                await Task.Run(() =>
+                if (new Theme.CustomMessageBox("Updating Complete", Theme.CustomMessageBox.MessageType.Info, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
                 {
-                    Process.GetCurrentProcess().Kill();
-                });
+                    Process.Start(desktopPath + AppExecutablePath + downloadedapplicationName);
+                    await Task.Run(() =>
+                    {
+                        Process.GetCurrentProcess().Kill();
+                    });
+                }
+
             }
+            else
+            {
+                if (new Theme.CustomMessageBox(e.Error.Message, Theme.CustomMessageBox.MessageType.Info, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
+                {
+                }
+            }
+            ((WebClient)sender).Dispose();
         }
     }
 }
