@@ -124,13 +124,24 @@ namespace nanoSDK_APIClient.Windows.Main
 
         private void client_DownloadProgressCompletedAsync(object sender, AsyncCompletedEventArgs e)
         {
-            Getdata();
-            downloadBtn.IsEnabled = true;
-            CloseBtn.IsEnabled = true;
-            if (new Theme.CustomMessageBox("Do you want to Open the Latest Version?", Theme.CustomMessageBox.MessageType.Confirmation, Theme.CustomMessageBox.MessageButtons.YesNo).ShowDialog().Value)
+            if (e.Error == null)
             {
-                Process.Start(assetName);
+                Getdata();
+                downloadBtn.IsEnabled = true;
+                CloseBtn.IsEnabled = true;
+                if (new Theme.CustomMessageBox("Do you want to Open the Latest Version?", Theme.CustomMessageBox.MessageType.Confirmation, Theme.CustomMessageBox.MessageButtons.YesNo).ShowDialog().Value)
+                {
+                    Process.Start(assetName);
+                }
             }
+            else
+            {
+                if (new Theme.CustomMessageBox(e.Error.Message, Theme.CustomMessageBox.MessageType.Confirmation, Theme.CustomMessageBox.MessageButtons.YesNo).ShowDialog().Value)
+                {
+
+                }
+            }
+            ((WebClient)sender).Dispose();
 
         }
 
@@ -138,7 +149,6 @@ namespace nanoSDK_APIClient.Windows.Main
         {
             TitleText.Text = $"Downloading.. ({e.BytesReceived / 1046576}MB / {e.TotalBytesToReceive / 1046576}MB) ";
             CloseBtn.IsEnabled = false;
-
         }
 
         private Jsondata GetJsondata(string appname, string authkey)
