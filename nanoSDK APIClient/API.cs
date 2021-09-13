@@ -806,7 +806,7 @@ namespace nanoSDK_APIClient
                 InfoManager infoManager = new InfoManager();
                 infoManager.StartListener();
                 Constants.Token = Guid.NewGuid().ToString();
-                ServicePointManager.ServerCertificateValidationCallback += PinPublicKey;
+                //ServicePointManager.ServerCertificateValidationCallback += PinPublicKey;
                 Constants.APIENCRYPTKEY = Convert.ToBase64String(Encoding.Default.GetBytes(Session(32)));
                 Constants.APIENCRYPTSALT = Convert.ToBase64String(Encoding.Default.GetBytes(Session(16)));
                 Constants.IV = Convert.ToBase64String(Encoding.Default.GetBytes(Constants.RandomString(16)));
@@ -832,11 +832,11 @@ namespace nanoSDK_APIClient
                 Constants.Started = false;
             }
         }
-        private static bool PinPublicKey(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
-        {
-            return certificate != null && certificate.GetPublicKeyString() == _key;
-        }
-        private const string _key = "04D9F7C0C68DA3FDE380C3BBE2F87D09BB546B7DE5254DEAC4DC2DCA4A612A83585431E98B49A91A6D854D1128C133E92D5A6BFED12EF5043FF6AC5E77973135E6";
+        //private static bool PinPublicKey(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+        //{
+            //return certificate != null && certificate.GetPublicKeyString() == _key;
+        //}
+        //private const string _key = "04D9F7C0C68DA3FDE380C3BBE2F87D09BB546B7DE5254DEAC4DC2DCA4A612A83585431E98B49A91A6D854D1128C133E92D5A6BFED12EF5043FF6AC5E77973135E6";
         public static string Integrity(string filename)
         {
             string result;

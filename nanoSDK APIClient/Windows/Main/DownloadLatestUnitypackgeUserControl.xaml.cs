@@ -27,6 +27,7 @@ namespace nanoSDK_APIClient.Windows.Main
     public partial class DownloadLatestUnitypackgeUserControl : UserControl
     {
         public static string assetName = "LatestUnitypackage.unitypackage";
+        public static string website = "https://nanosdk.net/download/apinewest/";
 
         public DownloadLatestUnitypackgeUserControl()
         {
@@ -98,14 +99,14 @@ namespace nanoSDK_APIClient.Windows.Main
         private void DownloadAndRunLatestAsync()
         {
             downloadBtn.IsEnabled = false;
-            string website = "https://nanosdk.net/download/apinewest/";
+            
             WebClient client = new WebClient();
             client.Headers.Set(HttpRequestHeader.UserAgent, "Webkit Gecko wHTTPS (Keep Alive 55)");
             client.DownloadFileCompleted += client_DownloadProgressCompletedAsync;
             client.DownloadProgressChanged += client_DownloadProgressChangedAsync;
             try
             {
-                client.DownloadFileAsync(new Uri(website), assetName);
+                client.DownloadFileAsync(new Uri(website), System.IO.Path.GetTempPath() + "\\" + assetName);
             }
             catch (Exception ex)
             {
@@ -127,12 +128,13 @@ namespace nanoSDK_APIClient.Windows.Main
                 CloseBtn.IsEnabled = true;
                 if (new Theme.CustomMessageBox("Do you want to Open the Latest Version?", Theme.CustomMessageBox.MessageType.Confirmation, Theme.CustomMessageBox.MessageButtons.YesNo).ShowDialog().Value)
                 {
-                    Process.Start(assetName);
+                    string temp = System.IO.Path.GetTempPath();
+                    Process.Start(temp + "\\" + assetName);
                 }
             }
             else
             {
-                if (new Theme.CustomMessageBox(e.Error.Message, Theme.CustomMessageBox.MessageType.Confirmation, Theme.CustomMessageBox.MessageButtons.YesNo).ShowDialog().Value)
+                if (new Theme.CustomMessageBox(e.Error.Message, Theme.CustomMessageBox.MessageType.Confirmation, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
                 {
 
                 }
