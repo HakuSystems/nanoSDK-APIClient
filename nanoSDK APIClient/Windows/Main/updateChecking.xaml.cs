@@ -48,12 +48,20 @@ namespace nanoSDK_APIClient.Windows.Main
             var thisVersion = Application.ResourceAssembly.ManifestModule.Assembly.GetName().Version;
             try
             {
-                if (serverVersion > thisVersion)
+                if (serverVersion != thisVersion)
                 {
                     WebClient client = new WebClient();
-                    Directory.CreateDirectory(desktopPath + AppExecutablePath);
-                    client.DownloadFileCompleted += client_DownloadFileCompleted;
-                    client.DownloadFileAsync(new Uri(AppExecutableURL), desktopPath + AppExecutablePath + downloadedapplicationName);
+                    client.Headers.Set(HttpRequestHeader.UserAgent, "Webkit Gecko wHTTPS (Keep Alive 55)");
+                    client.DownloadFileCompleted += client_DownloadProgressCompletedAsync;
+                    client.DownloadProgressChanged += client_DownloadProgressChanged;
+                    try
+                    {
+                        client.DownloadFileAsync(new Uri(AppExecutableURL), System.IO.Path.GetTempPath() + "\\" + downloadedapplicationName);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Please Notify lyze on Discord. - " + ex.Message, "Error While Updating");
+                    }
                 }
                 else
                 {
@@ -65,35 +73,34 @@ namespace nanoSDK_APIClient.Windows.Main
             }
             catch (Exception ex)
             {
-                if (new nanoSDK_APIClient.Theme.CustomMessageBox(ex.Message, Theme.CustomMessageBox.MessageType.Error, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
+                MessageBox.Show("Please Notify lyze on Discord. - " + ex.Message, "Error While Updating");
+                await Task.Run(() =>
                 {
-                    await Task.Run(() =>
-                    {
-                        Process.GetCurrentProcess().Kill();
-                    });
-                }
+                    Process.GetCurrentProcess().Kill();
+                });
             }
         }
 
-        private async void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        private void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            if (e.Error == null)
-            {
-                if (new Theme.CustomMessageBox("Updating Complete", Theme.CustomMessageBox.MessageType.Info, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
-                {
-                    Process.Start(desktopPath + AppExecutablePath + downloadedapplicationName);
-                    await Task.Run(() =>
-                    {
-                        Process.GetCurrentProcess().Kill();
-                    });
-                }
+                UpdateText.Text = $"Updating Client Please Wait.. ({e.BytesReceived / 1046576}MB / {e.TotalBytesToReceive / 1046576}MB) ";
+        }
 
-            }
-            else
+        private void client_DownloadProgressCompletedAsync(object sender, AsyncCompletedEventArgs e)
+        {
+            try
             {
-                if (new Theme.CustomMessageBox(e.Error.Message, Theme.CustomMessageBox.MessageType.Info, Theme.CustomMessageBox.MessageButtons.Ok).ShowDialog().Value)
+                if (e.Error == null)
                 {
+                    string temp = System.IO.Path.GetTempPath();
+                    Process.Start(temp + "\\" + downloadedapplicationName);
+                    Process.GetCurrentProcess().Kill();
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Please Notify lyze on Discord. - " + ex.Message, "Error While Updating");
+                Process.GetCurrentProcess().Kill();
             }
             ((WebClient)sender).Dispose();
         }

@@ -35,7 +35,7 @@
                     <materialDesign:TransitionEffect Kind="SlideInFromLeft"/>
                 </materialDesign:TransitioningContent.OpeningEffects>
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBlock Foreground="White" Text="Updating Application Please Wait.." TextWrapping="Wrap">
+                    <TextBlock x:Name="UpdateText" Foreground="White" Text="Updating Application Please Wait.." TextWrapping="Wrap">
                     </TextBlock>
                 </StackPanel>
             </materialDesign:TransitioningContent>
